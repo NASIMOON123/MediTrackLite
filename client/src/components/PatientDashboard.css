@@ -1,0 +1,26 @@
+/* Base Container*/
+.dashboard-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+
+
+/* Dashboard Content Styling */
+.dashboard-content {
+  padding: 40px 28px;
+  text-align: center;
+}
+
+.dashboard-content h2 {
+  font-size: 28px;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.dashboard-content p {
+  font-size: 18px;
+  color: #4b5563;
+} 
+

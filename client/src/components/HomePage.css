@@ -1,0 +1,6 @@
+/* HomePage.css */
+.navbar-nav .nav-link:hover,
+.navbar-nav .dropdown-toggle:hover {
+  color: #ffc107 !important; /* Bootstrap warning color */
+  transition: color 0.3s ease;
+}

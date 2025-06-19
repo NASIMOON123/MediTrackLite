@@ -1,0 +1,34 @@
+# Node modules
+client/node_modules/
+server/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+**/node_modules
+
+# Environment files
+*.env
+*.env.local
+
+# Build output
+client/build/
+client/dist/
+
+# MacOS & system files
+.DS_Store
+Thumbs.db
+
+# VSCode settings
+.vscode/
+
+# React coverage reports (if using testing tools)
+client/coverage/
+
+# Local development files
+*.local
+.env.*.local

@@ -1,0 +1,71 @@
+
+.patient-doctors-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+}
+
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 255px; 
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
+.doctor-list-content {
+  flex-grow: 1;
+  padding: 30px;
+}
+
+.doctor-list-content h2 {
+  margin-top: 30px;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  text-align: center;
+  color: #34495e;
+}
+
+.doctor-list-content p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+}
+
+
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  align-items: stretch; /* ensures equal height */
+}
+
+.doctor-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* important: stretch to full height */
+  transition: transform 0.2s ease;
+}
+
+.doctor-card:hover {
+  transform: scale(1.02);
+}
+
+
+@media (min-width: 992px) {
+  .doctor-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.doctor-list-container{
+  max-width: 200px;
+}
