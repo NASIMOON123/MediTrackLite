@@ -64,7 +64,9 @@ const ResetPassword = () => {
     value={newPassword}
     onChange={(e) => setNewPassword(e.target.value)}
     required
-    style={{ paddingRight: '40px' }} // leave space for icon
+    style={{ paddingRight: '40px' 
+
+    }} // leave space for icon
   />
   <span
   onClick={() => setShowPassword(!showPassword)}
@@ -73,7 +75,8 @@ const ResetPassword = () => {
     right: '10px',
     top: '50%',
     transform: 'translateY(-50%)',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    paddingBottom:'18px'
   }}
 >
   {showPassword ? <FaEyeSlash /> : <FaEye />}
