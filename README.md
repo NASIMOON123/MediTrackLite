@@ -1,80 +1,109 @@
-# MediTrackLite 🏥💊
 
-**MediTrackLite** is a full-stack MERN (MongoDB, Express.js, React, Node.js) application designed for efficient clinic and appointment management with role-based access for **Admin**, **Doctors**, and **Patients**.
+# 🏥 MediTrackLite
+
+**MediTrackLite** is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) based clinic and appointment management system with role-based access control for **Admin**, **Doctors**, and **Patients**.
 
 ---
 
-
-
 ## 📌 Features
 
-### 🔐 User Roles
+### 🔐 Role-Based Access
+
 - **Admin**
 - **Doctor**
 - **Patient**
 
 ---
 
-### 🌐 Public Home Page
-- Landing page with navigation
-- Doctor/Patient login
-- Admin login
-- About Us section
-- Contact section
+## 🌐 Public Pages
+
+- Landing Page with Navigation
+- Doctor/Patient Login
+- Admin Login
+- About Us Section
+- Contact Section
 
 ---
 
 ## 🧑‍💼 Admin Dashboard
-- View all doctors categorized as:
+
+- View and manage all doctors:
   - ✅ Approved Doctors
   - 🕓 Pending Approval
-- Manually approve/reject doctors
+- Manually approve or reject doctor applications
+- View system analytics:
+  - Total Patients, Doctors, and Appointments
+  - Pie chart of specializations
+  - Appointment and approval statistics via graphs
+- View and manage patient feedback
 
 ---
 
 ## 🧑‍⚕️ Doctor Dashboard
-- View & update profile
-- View appointments booked by patients
-- Approve/Reject appointment requests
-- Start treatment (In-Progress state)
-- Mark treatment as Completed
-- View list of all approved and in-progress appointments
+
+- View and update profile
+- View appointment requests from patients
+- ✅ Approve or ❌ Reject appointments
+- Start treatment (status changes to **In-Progress**)
+- Add prescription and mark treatment as **Completed**
+- Toggle prescription visibility for completed appointments
+- View feedback with average star rating
+- Analytics dashboard with appointment status pie chart
 - Logout
 
 ---
 
 ## 👩‍💻 Patient Dashboard
-- View and update patient profile
-- **Book Appointment** with admin-approved doctors
-- **Filter appointments** by status (Pending / Approved / In-Progress / Completed)
-- **View & Download Prescriptions** for completed appointments
-- View all doctors
+
+- View and update profile
+- Book appointments with **admin-approved** doctors
+  - Cannot book more than **2 appointments per day**
+- Filter appointments by status:
+  - Pending / Approved / In-Progress / Completed
+- View or download prescription (for completed appointments)
+- Submit and view feedback with star ratings
+- Explore all approved doctors on “My Doctors” page
 - Logout
 
 ---
 
 ## 📅 Appointment Workflow
-1. Patient books appointment with selected doctor
-2. Doctor approves or rejects
+
+1. Patient books appointment with a selected doctor
+2. Doctor approves or rejects request
 3. If approved:
-   - Doctor can start treatment (status: In-Progress)
-   - Once done, marks it as Completed
-4. Patient can then view/download the prescription
+   - Doctor starts treatment (status becomes **In-Progress**)
+   - Doctor adds prescription and marks it as **Completed**
+4. Patient views/downloads the prescription
+5. Patient submits feedback
+
+---
+
+## 📊 Analytics (Admin & Doctor Dashboards)
+
+- **Admin**:
+  - Bar graphs: Total doctors, patients, appointments
+  - Pie chart: Doctor specialization
+  - Feedback analysis
+
+- **Doctor**:
+  - Pie chart: Appointment status (Approved, In-Progress, Completed)
+  - Patient feedback & average ratings
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Tech          | Role                |
-|---------------|---------------------|
-| **MongoDB**   | Database             |
-| **Express.js**| Backend Framework   |
-| **React.js**  | Frontend Library     |
-| **Node.js**   | Server Runtime       |
-| **Axios**     | API Requests         |
-| **JWT**       | Authentication       |
-| **Multer**    | File Uploads         |
-| **Bootstrap + Custom CSS** | Styling  |
+| Tech            | Role                   |
+|-----------------|------------------------|
+| **MongoDB**     | NoSQL Database         |
+| **Express.js**  | Backend Framework      |
+| **React.js**    | Frontend Library       |
+| **Node.js**     | Server Runtime         |
+| **Axios**       | HTTP Requests          |
+| **JWT**         | Authentication         |
+| **Multer**      | File Uploads           |
+| **Bootstrap + Custom CSS** | Styling     |
 
 ---
 
@@ -93,28 +122,47 @@ MediTrackLite/
 ## 🚀 Getting Started
 
 ### 🔧 Prerequisites
-- Node.js
-- MongoDB
 
-### 🔩 Install & Run
+- Node.js (v16+)
+- MongoDB (local or Atlas)
+
+### 🔩 Installation & Running
 
 ```bash
-# From root folder
+# Clone the repository
+git clone https://github.com/your-username/MediTrackLite.git
+cd MediTrackLite
 
 # Install server dependencies
 cd server
 npm install
 
-# Install client dependencies
+# Start backend server
+node server.js
+
+# Install frontend dependencies
 cd ../client
 npm install
 
-# Start client
+# Start frontend
 npm start
-
-# Start server
-cd ../server
-node server.js
 ```
 
 ---
+
+## 📷 Screenshots 
+
+
+---
+
+## 📡 API Overview 
+> You can optionally provide a link to Postman documentation or list core API endpoints and structure here.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork the repository, make changes, and submit a pull request.
+
+---
+

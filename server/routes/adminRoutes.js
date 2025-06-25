@@ -11,8 +11,9 @@ import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-const ADMIN_EMAIL = 'admin@meditrack.local';
-const ADMIN_PASSWORD = 'Admin@123'; // move to env in production
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
 
 // 🔐 Admin Login Route
 router.post('/login', (req, res) => {
