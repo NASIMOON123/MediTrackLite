@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './BookAppointmentPage.css';
+import '../css/BookAppointmentPage.css';
 import { toast } from 'react-toastify';
 
 
@@ -82,7 +82,7 @@ const BookAppointmentPage = () => {
     <div className="book-appointment-page">
       <div className="appointment-layout">
         <div className="left-panel">
-          <button onClick={() => navigate('/doctors/approved')} className="back-to-doctors-btn">
+          <button onClick={() => navigate('/patient-dashboard/doctors')} className="back-to-doctors-btn">
             ← Back to Doctors
           </button>
           {doctor && (

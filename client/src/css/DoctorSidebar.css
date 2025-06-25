@@ -1,0 +1,120 @@
+/* Base sidebar */
+.ds-sidebar {
+  width: 250px;
+  background-color: #4a00e0;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 60px;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Sidebar content */
+.ds-sidebar-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+}
+
+.ds-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-navlink {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background 0.2s ease;
+}
+
+.ds-navlink.ds-active,
+.ds-navlink:hover {
+  background-color: #3700b3;
+}
+
+.ds-icon {
+  margin-right: 10px;
+}
+
+.ds-sidebar-footer {
+  margin-top: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.ds-logout-button {
+  background-color: #ff4d4d;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* ✅ Mobile Header */
+.ds-mobile-header {
+  display: none;
+}
+
+/* Hamburger icon */
+.ds-hamburger {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.ds-brand-name {
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+/* Overlay for sidebar */
+.ds-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+/* ✅ Media query for mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .ds-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .ds-sidebar.ds-open {
+    transform: translateX(0);
+  }
+
+  .ds-mobile-header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #4a00e0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1001;
+    margin-bottom: 80px;
+  }
+
+  .ds-sidebar {
+    padding-top: 60px;
+  }
+}

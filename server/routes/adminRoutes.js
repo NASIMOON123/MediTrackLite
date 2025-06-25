@@ -2,8 +2,10 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import {
-  approveDoctor,
-  getAllDoctorsForAdmin,  // ✅ fetch all doctors for admin dashboard
+ // approveDoctor,
+ getApprovalStatus,
+  getAllDoctorsForAdmin, 
+  getAllFeedbacksSorted
 } from '../controllers/adminController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
 
@@ -53,6 +55,11 @@ const adminProtect = (req, res, next) => {
 router.get('/doctors', adminProtect, getAllDoctorsForAdmin);
 
 // ✅ Approve doctor manually
-router.put('/approve-doctor/:id', adminProtect, approveDoctor);
+// router.put('/approve-doctor/:id', adminProtect, approveDoctor);
+router.get('/approval-status', authMiddleware, getApprovalStatus);
+
+
+router.get('/analytics/all-feedbacks', adminProtect, getAllFeedbacksSorted);
+
 
 export default router;

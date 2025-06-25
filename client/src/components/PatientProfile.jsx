@@ -1,7 +1,7 @@
 import React from 'react';
 
-import "./Profile.css";
-import PatientSidebar from "./PatientSidebar";
+import "../css/Profile.css";
+
 
 
 const PatientProfile = ({ user }) => {
@@ -12,7 +12,7 @@ const PatientProfile = ({ user }) => {
 
   return (
    <div>
-  <PatientSidebar />
+  
   <div className="main-content">
   <div className="profile-container">
     <div className="image-wrapper">

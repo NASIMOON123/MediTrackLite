@@ -1,0 +1,77 @@
+/* Layout Container */
+.doctor-dashboard-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar */
+.doctor-sidebar {
+  width: 240px;
+  background-color: #f8f9fa;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Main Area */
+.doctor-main {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+  min-height: 100vh;
+  padding: 30px 40px;
+  background-color: #f9fafb;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Welcome Box */
+.welcome-box {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+}
+
+.welcome-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.welcome-box p {
+  color: #555;
+  font-size: 16px;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .doctor-sidebar {
+    transform: translateX(-100%);
+    position: absolute;
+    z-index: 1000;
+  }
+
+  .doctor-main {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .welcome-box {
+    padding: 20px;
+  }
+
+  .welcome-box h2 {
+    font-size: 20px;
+  }
+
+  .welcome-box p {
+    font-size: 14px;
+  }
+}

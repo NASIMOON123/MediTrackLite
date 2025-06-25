@@ -1,0 +1,196 @@
+
+.profile-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.profile-info {
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.image-wrapper {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.doctor-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.complete-profile-form {
+  display: flex;
+  flex-direction: column;
+ 
+  width: 100%;
+  gap: 16px;
+}
+
+.complete-profile-form input,
+.complete-profile-form textarea {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.complete-profile-form input:focus,
+.complete-profile-form textarea:focus {
+  outline: none;
+  border-color: #4a00e0;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px rgba(74, 0, 224, 0.1);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #4a00e0;
+  cursor: pointer;
+}
+
+.preview-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.style-image {
+  display: flex;
+  justify-content: center;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submit-profile-button {
+  padding: 10px 10px;
+  background: #4a00e0;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  flex: 1;
+  transition: background 0.3s ease;
+}
+
+.submit-profile-button:hover {
+  background: #3700b3;
+}
+.cancel-profile-button {
+  padding: 10px 10px;
+  background: #4a00e0;
+  color: white;
+  border: none;
+  height: 48px;
+  margin-top: 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  flex: 1;
+  transition: background 0.3s ease;
+}
+
+.cancel-profile-button:hover {
+  background: #3700b3;
+}
+
+
+.logout-button {
+  margin-top: 30px;
+  background-color: #d9534f;
+  color: white;
+  padding: 12px;
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c9302c;
+}
+
+.edit-profile-button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #4a00e0;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-button:hover {
+  background-color: #3700b3;
+}
+
+.edit-form-wrapper {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 600px) {
+  .profile-container {
+    padding: 15px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .submit-profile-button,
+  .logout-button,
+  .edit-profile-button {
+    width: 100%;
+  }
+
+  .doctor-image {
+    width: 100px;
+    height: 100px;
+  }
+
+
+  .complete-profile-form input,
+  .complete-profile-form textarea {
+    font-size: 14px;
+  }
+
+  .profile-info {
+    font-size: 14px;
+  }
+}

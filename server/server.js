@@ -7,9 +7,10 @@ import cors from 'cors';
 import appointmentRoutes from './routes/appointmentRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import doctorRoutes from './routes/doctorRoutes.js';
-
-
-
+import chatbotRoute from './routes/chatbot.js';
+import feedbackRoutes from './routes/feedbackRoutes.js';
+import analyticsRoutes from './routes/analyticsroutes.js';
+import adminAnalyticsRouter from './routes/adminAnalytics.js';
 
 dotenv.config();
 
@@ -35,6 +36,11 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/appointments', appointmentRoutes);
 
 app.use('/api/doctors', doctorRoutes);
+
+app.use('/api/chatbot', chatbotRoute);
+app.use('/api/feedback', feedbackRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/admin/analytics', adminAnalyticsRouter);
 
 // DB Connection
 connectDB();

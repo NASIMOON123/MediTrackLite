@@ -1,0 +1,168 @@
+/* General container */
+.doctor-list-container {
+  padding: 2rem 1rem;
+  background-color: #f8f9fc;
+  min-height: 100vh;
+}
+
+/* Heading */
+.doctor-list-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Filters: search + select */
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.search-bar {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 250px;
+  flex: 1;
+}
+
+/* Doctor cards grid */
+.doctor-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1rem;
+  align-items: stretch; /* 👈 ensures all cards fill height */
+}
+
+
+/* Doctor card design */
+.doctor-card {
+  background: #d1e6e7;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/*  Medium screens (600px–1024px) */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .doctor-list {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1rem;
+  }
+
+  .filters-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-bar {
+    max-width: 400px;
+    width: 100%;
+  }
+}
+
+
+/* Small screens (<600px) */
+@media (max-width: 599px) {
+  .doctor-list {
+    grid-template-columns: 1fr;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+}
+/* Adjust layout to prevent overlap with fixed sidebar (assumed 250px wide) */
+@media (min-width: 1024px) {
+  .doctor-list-container {
+    margin-left: 260px; /* 250px sidebar + 10px gap */
+  }
+
+  .filters-container,
+  .doctor-list {
+    padding-left: 10px; /* Optional small spacing */
+  }
+}
+.search-bar {
+  padding: 10px 12px;
+  font-size: 16px;
+  height: 42px; 
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  appearance: none; 
+}
+
+/* Maintain equal card height on all screens */
+.doctor-card {
+  background: #d1e6e7;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  min-height: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+
+
+/* Make image container consistent */
+.image-container {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.doctor-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Button styling for consistency */
+.view-button {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #0284c7;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: #0369a1;
+}
+@media (max-width: 399px) {
+  .doctor-card {
+    min-height: 370px; /* Slight increase for tight screens */
+    width: 100%;
+  }
+}
+.doctor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

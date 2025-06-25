@@ -1,0 +1,62 @@
+.status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #f4f7fa;
+}
+
+
+.doctor-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 1rem auto;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* For the approval card */
+.approval-card {
+  background-color: #ffffff;
+  border: 4px solid #c3ddfd;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+/* For the pending message */
+.pending-card {
+  background-color: #fffbea;
+  border-left: 5px solid #facc15;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+.download-btn {
+  background: linear-gradient(to right, #4f46e5, #6366f1);
+  color: #fff;
+  padding: 12px 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  transition: transform 0.2s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, #4338ca, #4f46e5);
+}
+
+.download-btn .icon {
+  font-size: 18px;
+}

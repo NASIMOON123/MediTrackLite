@@ -1,13 +1,10 @@
-
-// export default DoctorCard;
 import React from 'react';
-import './DoctorCard.css';
+import '../css/DoctorCard.css';
 import { FaUserMd, FaStethoscope } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const DoctorCard = ({ doctor }) => {
   return (
-    <div className="doctor-container">
     <div className="doctor-card">
       <div className="image-container">
         {doctor.imageUrl ? (
@@ -21,9 +18,8 @@ const DoctorCard = ({ doctor }) => {
         <p className="specialization"><FaStethoscope /> {doctor.specialization}</p>
         <p>{doctor.title}</p>
         <p><strong>Experience:</strong> {doctor.experience} years</p>
-        <Link to={`/appointment/${doctor._id}`} className="view-button">View Profile</Link>
+        <Link to={`/appointment/${doctor._id}`} className="view-button">Book Appointment</Link>
       </div>
-    </div>
     </div>
   );
 };

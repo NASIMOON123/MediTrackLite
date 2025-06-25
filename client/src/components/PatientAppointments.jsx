@@ -1,9 +1,8 @@
-
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './PatientAppointment.css';
+import '../css/PatientAppointment.css';
+import FeedbackModal from './FeedbackModal'; // Ensure path is correct
 
 const PatientAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -12,6 +11,11 @@ const PatientAppointments = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [openPrescriptions, setOpenPrescriptions] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [submittedFeedbacks, setSubmittedFeedbacks] = useState({});
+  const [showFullFeedback, setShowFullFeedback] = useState({});
+
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -35,6 +39,30 @@ const PatientAppointments = () => {
         );
 
         setAppointments(res.data);
+        // Fetch feedback for completed appointments
+          const completed = res.data.filter((a) => a.status === 'Completed');
+
+        const feedbackMap = {};
+
+          await Promise.all(completed.map(async (appt) => {
+            try {
+              const fbRes = await axios.get(`http://localhost:5000/api/feedback/appointment/${appt._id}`, {
+                headers: { Authorization: `Bearer ${token}` },
+              });
+
+              if (fbRes.data?.comment || fbRes.data?.rating) {
+                feedbackMap[appt._id] = {
+                  comment: fbRes.data.comment,
+                  rating: fbRes.data.rating
+                };
+              }
+            } catch (err) {
+              feedbackMap[appt._id] = null;
+            }
+          }));
+
+          setSubmittedFeedbacks(feedbackMap);
+
         setFilteredAppointments(res.data);
         setLoading(false);
       } catch (err) {
@@ -83,15 +111,16 @@ const PatientAppointments = () => {
       const grouped = groupMedicinesByTiming(appointment.medicines);
 
       medicineHTML += '<strong>Medicines:</strong>';
-      for (const timing in grouped) {
-        if (grouped[timing].length > 0) {
-          medicineHTML += `<p><u>${timing}:</u></p><ul>`;
-          grouped[timing].forEach((med) => {
-            medicineHTML += `<li><strong>${med.name}</strong> - ${med.dosage} (${med.frequency})</li>`;
-          });
-          medicineHTML += '</ul>';
-        }
-      }
+     Object.entries(grouped).forEach(([timing, meds]) => {
+  if (meds.length > 0) {
+    const medListHTML = meds
+      .map((med) => `<li><strong>${med.name}</strong> - ${med.dosage} (${med.frequency})</li>`)
+      .join('');
+
+    medicineHTML += `<p><u>${timing}:</u></p><ul>${medListHTML}</ul>`;
+  }
+});
+
     }
 
     const printContent = `
@@ -110,24 +139,28 @@ const PatientAppointments = () => {
   };
 
   return (
-    <div style={{ marginLeft: '250px', padding: '20px' }}>
+    <div className="patient-appointment-wrapper">
+
       <div className="container-fluid">
         <h2 className="mb-4 text-center">My Appointments</h2>
 
-        {/* Status Filter */}
-        <div className="mb-4 d-flex justify-content-center">
-          <select
-            className="form-select w-auto"
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-          >
-            <option value="All">All</option>
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Rejected">Rejected</option>
-            <option value="Completed">Completed</option>
-          </select>
-        </div>
+         {/* Status Filter as Horizontal Tabs */}
+          <div className="mb-4 d-flex justify-content-center">
+            <ul className="nav nav-tabs flex-wrap justify-content-center">
+              {['All', 'Pending', 'Approved', 'In Progress', 'Rejected', 'Completed'].map((status) => (
+                <li className="nav-item" key={status}>
+                  <button
+                    className={`nav-link ${statusFilter === status ? 'active' : ''}`}
+                    onClick={() => setStatusFilter(status)}
+                  >
+                    {status}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+
 
         {loading ? (
           <p className="text-center">Loading appointments...</p>
@@ -146,19 +179,11 @@ const PatientAppointments = () => {
                       <strong>Time:</strong> {appointment.time}<br />
                       <strong>Doctor:</strong> {appointment.doctorId.name || appointment.doctorId}<br />
                       <strong>Symptom:</strong> {appointment.symptoms || 'N/A'}<br />
-                      <strong>Status:</strong>{' '}
-                      <span className={
-                        appointment.status === 'Approved'
-                          ? 'badge bg-success'
-                          : appointment.status === 'Rejected'
-                          ? 'badge bg-danger'
-                          : appointment.status === 'Completed'
-                          ? 'badge bg-primary'
-                          : 'badge bg-warning text-dark'
-                      }>
-                        {appointment.status}
-                      </span><br />
-
+                      
+                      <span className={`status-label ${appointment.status.toLowerCase().replace(/\s/g, '-')}`}>
+                 {appointment.status}
+                  </span>
+                      <br/>
                       {appointment.status === 'Completed' && (
                         <div className="mt-3">
                           <button
@@ -167,12 +192,29 @@ const PatientAppointments = () => {
                           >
                             {openPrescriptions[appointment._id] ? 'Hide Prescription' : 'View Prescription'}
                           </button>
+
                           <button
-                            className="btn btn-sm btn-outline-primary"
+                            className="btn btn-sm btn-outline-primary me-2"
                             onClick={() => handlePrint(appointment)}
                           >
                             Download Prescription
                           </button>
+
+                          {!submittedFeedbacks[appointment._id] ? (
+                            <button
+                              className="btn btn-sm btn-outline-success"
+                              onClick={() => {
+                                setSelectedAppointment(appointment);
+                                setShowModal(true);
+                              }}
+                            >
+                              📝 Leave Feedback
+                            </button>
+                          ) : (
+                            
+                            <span className="text-success small"><br/>You have already submitted feedback.</span>
+
+                          )}
 
                           {openPrescriptions[appointment._id] && (
                             <div className="border rounded p-3 mt-3 bg-light">
@@ -198,8 +240,39 @@ const PatientAppointments = () => {
                               )}
                             </div>
                           )}
+                         {submittedFeedbacks[appointment._id] && (
+                        <div className="feedback-box mt-3">
+                          <strong>Feedback:</strong>
+                          <p className="fst-italic mb-1">
+                            {showFullFeedback[appointment._id]
+                              ? submittedFeedbacks[appointment._id].comment
+                              : submittedFeedbacks[appointment._id].comment.slice(0, 100) + (submittedFeedbacks[appointment._id].comment.length > 100 ? '...' : '')}
+                          </p>
+                          {submittedFeedbacks[appointment._id].comment.length > 100 && (
+                            <button
+                              className="btn btn-link p-0"
+                              onClick={() =>
+                                setShowFullFeedback((prev) => ({
+                                  ...prev,
+                                  [appointment._id]: !prev[appointment._id],
+                                }))
+                              }
+                            >
+                              {showFullFeedback[appointment._id] ? 'Show less' : 'Show more'}
+                            </button>
+                          )}
+                          <div className="stars mb-0">
+                            {[...Array(5)].map((_, i) => (
+                              <span key={i} className={i < submittedFeedbacks[appointment._id].rating ? 'star filled' : 'star'}>★</span>
+                            ))}
+                          </div>
                         </div>
                       )}
+
+
+                        </div>
+                      )}
+
                     </div>
                   </div>
                 </div>
@@ -207,8 +280,22 @@ const PatientAppointments = () => {
             ))}
           </div>
         )}
-      </div>
+           </div>
+
+     {/* Render Feedback Modal here */}
+      {showModal && selectedAppointment && (
+        <FeedbackModal
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          appointment={selectedAppointment}
+          onFeedbackSubmitted={(id) => {
+            setSubmittedFeedbacks((prev) => ({ ...prev, [id]: true }));
+          }}
+        />
+      )}
+
     </div>
+
   );
 };
 

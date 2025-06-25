@@ -49,14 +49,18 @@ export const updateDoctorProfile = async (req, res) => {
     }
 
     const updates = req.body;
-    Object.keys(updates).forEach((key) => {
-      doctor[key] = updates[key];
-    });
 
-    // ✅ Accept base64 image string directly from frontend
-    if (updates.imageUrl) {
-      doctor.imageUrl = updates.imageUrl;
-    }
+    // ✅ Safely apply only defined, non-empty fields
+    Object.entries(updates).forEach(([key, value]) => {
+      if (
+        value !== undefined &&
+        value !== null &&
+        value !== '' &&
+        key !== 'password' // safety
+      ) {
+        doctor[key] = value;
+      }
+    });
 
     await doctor.save();
     doctor = doctor.toObject();
@@ -67,17 +71,25 @@ export const updateDoctorProfile = async (req, res) => {
     res.status(500).json({ message: 'Failed to update profile', error: error.message });
   }
 };
+
 //changed
 export const getDoctorApprovalStatus = async (req, res) => {
   try {
-    const doctor = await Doctor.findById(req.user._id).select('isApproved');
+    const doctor = await Doctor.findById(req.user._id).select('isApproved name email imageUrl');
+
     if (!doctor) {
       return res.status(404).json({ message: 'Doctor not found' });
     }
 
-    // ✅ This is crucial
-    res.status(200).json({ isApproved: doctor.isApproved });
+    res.status(200).json({
+      isApproved: doctor.isApproved,
+      name: doctor.name,
+      email: doctor.email,
+      imageUrl: doctor.imageUrl,
+    });
   } catch (error) {
+    console.error('Error in getDoctorApprovalStatus:', error);
     res.status(500).json({ message: 'Error fetching approval status' });
   }
 };
+

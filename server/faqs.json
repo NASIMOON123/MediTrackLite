@@ -1,0 +1,70 @@
+[
+    {
+        "question":"hello",
+        "answer":"Hello.Welcome to MeditrackBot.How can I assist you."
+    },
+    
+        {
+          "question": "how can i book an appointment",
+          "answer": "To book an appointment, go to the 'Doctors' page, select a doctor, and click 'Book Appointment'."
+        },
+        {
+          "question": "how to reset my password",
+          "answer": "Use the 'Forgot Password' option on the login page and follow the instructions."
+        },
+        {
+          "question": "how can i find a doctor",
+          "answer": "Visit the 'Doctors' section where all approved doctors are listed with their profiles and specializations."
+        },
+        {
+          "question": "what is meditracklite",
+          "answer": "MediTrackLite is a smart hospital management platform that helps patients connect with doctors, manage appointments, and access healthcare easily."
+        },
+        {
+          "question": "how do i update my profile",
+          "answer": "Log in to your dashboard, click on 'Profile', make your changes, and hit 'Save'."
+        },
+        {
+          "question": "how do i view my appointments",
+          "answer": "Go to your Dashboard and click on 'Appointments' to see your scheduled bookings."
+        },
+        {
+          "question": "how can i cancel an appointment",
+          "answer": "Navigate to your 'Appointments' section and click on the 'Cancel' button next to the appointment."
+        },
+        {
+          "question": "what should i do if i forget my email",
+          "answer": "If you've forgotten your registered email, please contact support or your hospital admin for help."
+        },
+        {
+          "question": "how do i contact my doctor",
+          "answer": "Once your appointment is booked, contact details or instructions may be shared in the 'Appointment Details' section."
+        },
+        {
+          "question": "is my data safe on meditracklite",
+          "answer": "Yes, MediTrackLite ensures secure handling of your medical and personal data using encryption and access controls."
+        },
+        {
+          "question": "can i reschedule an appointment",
+          "answer": "Yes, go to your appointments, click on the appointment, and select 'Reschedule' if the doctor allows it."
+        },
+        {
+          "question": "what is a pending appointment",
+          "answer": "A pending appointment means the doctor has not yet approved or confirmed your booking."
+        },
+        {
+          "question": "what does approved doctor mean",
+          "answer": "An approved doctor is one who has been verified by the admin and is available for booking."
+        },
+        {
+          "question": "how do i log out",
+          "answer": "Click on your profile icon and select 'Logout' from the dropdown menu."
+        },
+        {
+          "question": "how do i report a technical issue",
+          "answer": "Please use the 'Support' or 'Help' option on the website to report any bugs or issues you’re facing."
+        }
+      
+      
+  ]
+  

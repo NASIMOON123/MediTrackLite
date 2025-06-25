@@ -1,5 +1,6 @@
+// src/components/LoginForm.jsx
 import React, { useState } from 'react';
-import "./Form.css";
+import "../css/login.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -60,54 +61,66 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
-    <div className='login-container'>
-    <h2>Login</h2>
-    <form onSubmit={handleSubmit} className="f-container">
-
-      <label>Email:</label>
-      <input
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-
-      <label>Password:</label>
-      <div className="password-field">
-        <input
-          type={showPassword ? 'text' : 'password'}
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
+    <div className="login-outer">
+    <div className="login-wrapper">
+      <div className="login-image">
+        <img
+          src="https://img.freepik.com/free-vector/online-doctor-concept_23-2148520389.jpg?uid=R204605876&ga=GA1.1.1445937076.1733657251&semt=ais_hybrid&w=740"
+          alt="Login Illustration"
         />
-        <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
-          {showPassword ? <FaEye /> : <FaEyeSlash />}
-        </span>
       </div>
-      <div className="forgot-password">
-        <Link to="/forgot-password">Forgot Password?</Link>
+
+      <div className="login-form-wrapper">
+        <form onSubmit={handleSubmit} className="f-container">
+          <h2>Login</h2>
+
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+
+          <label>Password:</label>
+          <div className="password-field">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </span>
+          </div>
+
+          <div className="forgot-password">
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </div>
+
+          <button type="submit">Login</button>
+
+          {message && <p className={`message ${messageType}`}>{message}</p>}
+
+          <p style={{ marginTop: '15px' }}>
+            Don't have an account? <Link to="/register">Register</Link>
+          </p>
+
+          <div className="back-home-link">
+            <a href="/">Back to Home</a>
+          </div>
+        </form>
       </div>
-      <label>Role:</label>
-      <select name="role" value={formData.role} onChange={handleChange}>
-        <option value="patient">Patient</option>
-        <option value="doctor">Doctor</option>
-      </select>
-
-      <button type="submit">Login</button>
-
-      {message && <p className={`message ${messageType}`}>{message}</p>}
-
-      <p style={{ marginTop: '15px' }}>
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
-      <div className="back-home-link">
-    <a href="/">Back to Home</a>
-  </div>
-    </form>
     </div>
+  </div>
   );
 };
 
 export default LoginForm;
+
