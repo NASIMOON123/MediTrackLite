@@ -13,7 +13,24 @@ export const getAllDoctorsForAdmin = async (req, res) => {
 };
 
 
+// ✅ Approve a doctor by ID
+export const approveDoctor = async (req, res) => {
+  try {
+    const doctor = await Doctor.findByIdAndUpdate(
+      req.params.id,
+      { isApproved: true },
+      { new: true }
+    );
 
+    if (!doctor) {
+      return res.status(404).json({ error: 'Doctor not found' });
+    }
+
+    res.json({ message: 'Doctor approved successfully', doctor });
+  } catch (error) {
+    res.status(500).json({ error: 'Approval failed', details: error.message });
+  }
+};
 
 
 // ✅ Get approval status + doctor details

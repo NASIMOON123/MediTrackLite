@@ -62,5 +62,8 @@ router.get('/approval-status', authMiddleware, getApprovalStatus);
 
 router.get('/analytics/all-feedbacks', adminProtect, getAllFeedbacksSorted);
 
+// ✅ Approve doctor manually
+ router.put('/approve-doctor/:id', adminProtect, approveDoctor);
 
+ 
 export default router;

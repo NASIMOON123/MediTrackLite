@@ -39,7 +39,7 @@ const AdminLogin = () => {
             <label>Email:</label>
             <input
               type="email"
-              placeholder="admin@meditrack.local"
+              placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
