@@ -16,7 +16,7 @@ const AdminLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/login', { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/admin/login`, { email, password });
       localStorage.setItem('adminToken', response.data.token);
       localStorage.setItem('role', response.data.role);
       toast.success('Login successful!');

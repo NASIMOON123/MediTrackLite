@@ -13,6 +13,16 @@
 - **Doctor**
 - **Patient**
 
+### 💬 Smart Chatbot 
+
+- Integrated chatbot available on every page
+- Answers predefined FAQs like:
+  - How to book appointments
+  - Daily booking limits
+  - Prescription download
+  - Doctor approval status
+- Improves user support and experience
+
 ---
 
 ## 🌐 Public Pages
@@ -36,6 +46,8 @@
   - Pie chart of specializations
   - Appointment and approval statistics via graphs
 - View and manage patient feedback
+- 🔎 Get help instantly using the integrated chatbot
+- logout
 
 ---
 
@@ -49,6 +61,7 @@
 - Toggle prescription visibility for completed appointments
 - View feedback with average star rating
 - Analytics dashboard with appointment status pie chart
+- 🔎 Get help instantly using the integrated chatbot
 - Logout
 
 ---
@@ -63,6 +76,7 @@
 - View or download prescription (for completed appointments)
 - Submit and view feedback with star ratings
 - Explore all approved doctors on “My Doctors” page
+- 🔎 Get help instantly using the integrated chatbot
 - Logout
 
 ---
@@ -88,7 +102,6 @@
 
 - **Doctor**:
   - Pie chart: Appointment status (Approved, In-Progress, Completed)
-  - Patient feedback & average ratings
 
 ---
 
@@ -152,13 +165,63 @@ npm start
 
 ## 📷 Screenshots 
 
+### 🏠 Home Page
+![Home Page](screenshots/home.png)
+![logins Page](screenshots/logins.png)
+![About Page](screenshots/aboutus.png)
+![services Page](screenshots/services.png)
+![Gallery Page](screenshots/gallery.png)
+![Contactus Page](screenshots/contactus.png)
+
+### 🔐 Login Pages
+![admin Login Page](screenshots/admin_login.png)
+![login Page](screenshots/login_page.png)
+![Registration Page](screenshots/register_page.png)
+![Forgot Password Page](screenshots/forgotpassword.png)
+![Reset Password Page](screenshots/resetpassword.png)
+
+### 🧑‍💼 Admin Dashboard
+![Admin Dashboard](screenshots/admin_dashboard.png)
+![Approved doctors Page](screenshots/admin_approved_doctors.png)
+![Admin Analytics Page](screenshots/admin_analytics.png)
+![Admin Feedback Page](screenshots/admin_feedbacks.png)
+
+### 🧑‍⚕️ Doctor Dashboard
+![Doctor Dashboard](screenshots/doctor_dashboard.png)
+![Doctor Profile](screenshots/doctor_profile.png)
+![Doctor Editprofile](screenshots/doctor_edit.png)
+![Doctor Pending Appointments](screenshots/doctor_pendingappointments.jpeg)
+![Doctor Feedback](screenshots/doctor_feedback.png)
+![Doctor Myappointments Approved](screenshots/doctor_approved.png)
+![Doctor Myappointments Inprogress](screenshots/doctor_inprogressappointments.jpeg)
+![Doctor Myappointments Completed](screenshots/doctor_completed_appoinments.jpeg)
+![Doctor Analytics](screenshots/doctor_analytics.jpeg)
+![Doctor Approved](screenshots/doctor_approval.jpeg)
+![Doctor Notapproved](screenshots/doctor_notapproved.jpeg)
+
+### 👩‍💻 Patient Dashboard
+![Patient Dashboard](screenshots/patient_dashboard.png)
+![Patient All Appointmnets](screenshots/patient_all.jpeg)
+![Patient Approved Appointmnets](screenshots/patient_approved.png)
+![Patient Pending Appointmnets](screenshots/patient_pending.png)
+![Patient Inprogress Appointmnets](screenshots/patient_inprogress.jpeg)
+![Patient Rejected Appointmnets](screenshots/patient_rejected.png)
+![Patient Completed Appointmnets](screenshots/patient_completed.jpeg)
+![Patient MyDoctors](screenshots/patient_doctors.jpeg)
+
+
+### 📅 Appointment Booking
+![Appointment Booking](screenshots/patient_appointmentbooking1.jpeg)
+![Appointment Booking](screenshots/patient_appointmentbooking.jpeg)
+
+
+### 💬 Smart Chatbot
+![Chatbot](screenshots/chatbot.png)
+![Chatbot](screenshots/chatbot1.jpeg)
 
 ---
 
-## 📡 API Overview 
-> You can optionally provide a link to Postman documentation or list core API endpoints and structure here.
 
----
 
 ## 🤝 Contributing
 

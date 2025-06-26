@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import { FaBars, FaUserCircle, FaBell } from 'react-icons/fa';
+import { FaBars} from 'react-icons/fa';
 import 'react-toastify/dist/ReactToastify.css';
 import '../css/AdminDashboard.css';
 import {
@@ -23,15 +23,15 @@ const AdminDashboard = () => {
   const [appointmentsOverTime, setAppointmentsOverTime] = useState([]);
   const [doctorSpecializations, setDoctorSpecializations] = useState([]);
 
-  const backendURL = 'http://localhost:5000';
+  
 
   const fetchAnalytics = async () => {
     try {
       const token = localStorage.getItem('adminToken');
       const [statsRes, appointmentsRes, specializationsRes] = await Promise.all([
-        axios.get(`${backendURL}/api/admin/analytics/stats`, { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get(`${backendURL}/api/admin/analytics/appointments-over-time`, { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get(`${backendURL}/api/admin/analytics/doctor-specializations`, { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/admin/analytics/stats`, { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/admin/analytics/appointments-over-time`, { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/admin/analytics/doctor-specializations`, { headers: { Authorization: `Bearer ${token}` } }),
       ]);
       setStats(statsRes.data);
       setAppointmentsOverTime(appointmentsRes.data);
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
   const fetchDoctors = async () => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await axios.get('/api/admin/doctors', {
+      const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/admin/doctors`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setDoctors(res.data);
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
   const handleApprove = async (id) => {
     try {
       const token = localStorage.getItem('adminToken');
-      await axios.put(`/api/admin/approve-doctor/${id}`, {}, {
+      await axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/admin/approve-doctor/${id}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('Doctor approved!');
@@ -214,7 +214,7 @@ const [allFeedbacks, setAllFeedbacks] = useState([]);
 const fetchAllFeedbacks = async () => {
   try {
     const token = localStorage.getItem('adminToken');
-    const res = await axios.get('http://localhost:5000/api/admin/analytics/all-feedbacks', {
+    const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/admin/analytics/all-feedbacks`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setAllFeedbacks(res.data);
@@ -229,24 +229,6 @@ useEffect(() => {
   }
 }, [activeTab]);
 
-const renderStars = (count) => {
-  return (
-    <>
-      {[...Array(5)].map((_, i) => (
-        <span
-          key={i}
-          className={`me-1`}
-          style={{
-            color: i < count ? '#FFD700' : '#dee2e6',
-            fontSize: '18px'
-          }}
-        >
-          ★
-        </span>
-      ))}
-    </>
-  );
-};
 
 const renderFeedback = () => {
   if (!allFeedbacks || allFeedbacks.length === 0) {

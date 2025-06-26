@@ -6,14 +6,7 @@ import validator from 'validator';
 import Doctor from '../models/doctor.js';
 import Patient from '../models/patient.js';
 
-// In-memory OTP store (replace with Redis or DB in production)
-const otpStore = new Map();
-const adminPhoneNumbers = new Set([
-  '7396299057',
-  '8639834399',
-  '7032972738',
-  '6300497132'
-]);
+
 
 
 export const register = async (req, res) => {
@@ -97,27 +90,43 @@ export const register = async (req, res) => {
   };
   
   
-  
-// === SEND OTP ===
+
+const otpStore = new Map();
+const otpRequestLog = new Map();
 
 export const sendOtp = async (req, res) => {
   const { phone } = req.body;
 
-  if (!adminPhoneNumbers.has(phone)) {
-    return res.status(403).json({ message: 'Unauthorized phone number' });
+  const phoneRegex = /^[6-9]\d{9}$/;
+  if (!phoneRegex.test(phone)) {
+    return res.status(400).json({ message: 'Invalid phone number. Must be 10 digits starting with 6-9.' });
+  }
+
+  const now = Date.now();
+  const windowTime = 15 * 60 * 1000;
+  const limit = 3;
+
+  const requestTimes = otpRequestLog.get(phone) || [];
+  const recentRequests = requestTimes.filter(ts => now - ts < windowTime);
+
+  if (recentRequests.length >= limit) {
+    return res.status(429).json({ message: 'Too many OTP requests. Please try again after 15 minutes.' });
   }
 
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
-  otpStore.set(phone, { otp, expiresAt: Date.now() + 5 * 60 * 1000 });
+  otpStore.set(phone, { otp, expiresAt: now + 5 * 60 * 1000 });
+  otpRequestLog.set(phone, [...recentRequests, now]);
 
-  //console.log(`✅ OTP sent to ${phone}: ${otp}`);
+  console.log(`Generated OTP for ${phone}: ${otp}`);
 
-  // 👉 Send OTP in the response for frontend use
+  // ✅ Send OTP in response for demo/testing (NOT recommended for production)
   res.status(200).json({
-    message: 'OTP sent to admin number',
-    otp, 
+    message: 'OTP generated successfully',
+    otp: otp // 👈 return this to frontend for display
   });
 };
+
+
 
 
 

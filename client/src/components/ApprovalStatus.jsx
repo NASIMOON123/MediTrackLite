@@ -20,7 +20,7 @@ const ApprovalStatus = () => {
     const fetchApproval = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('/api/doctors/approval-status', {
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/doctors/approval-status`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         

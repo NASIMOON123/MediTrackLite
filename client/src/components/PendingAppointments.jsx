@@ -10,7 +10,7 @@ const PendingAppointments = () => {
     const fetchPendingAppointments = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/appointments/appointments', {
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/appointments/appointments`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -28,7 +28,7 @@ const PendingAppointments = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.patch(
-        `http://localhost:5000/api/appointments/update-status/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/appointments/update-status/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

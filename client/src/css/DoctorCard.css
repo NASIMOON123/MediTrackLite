@@ -36,7 +36,7 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   padding: 0 1rem;
-  align-items: stretch; /* 👈 ensures all cards fill height */
+  align-items: stretch; 
 }
 
 
@@ -92,7 +92,7 @@
 
   .filters-container,
   .doctor-list {
-    padding-left: 10px; /* Optional small spacing */
+    padding-left: 10px; 
   }
 }
 .search-bar {
@@ -157,7 +157,7 @@
 }
 @media (max-width: 399px) {
   .doctor-card {
-    min-height: 370px; /* Slight increase for tight screens */
+    min-height: 370px; 
     width: 100%;
   }
 }

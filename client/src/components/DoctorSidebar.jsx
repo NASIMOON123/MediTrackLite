@@ -28,11 +28,13 @@ const DoctorSidebar = () => {
     <>
       {/* ✅ Mobile Header */}
       <div className="ds-mobile-header">
-        <button className="ds-hamburger" onClick={() => setIsOpen(!isOpen)}>
-          <Menu size={28} />
-        </button>
-        <div className="ds-brand-name">MediTrack Lite</div>
-      </div>
+      <button className="ds-hamburger" onClick={() => setIsOpen(!isOpen)}>
+        <Menu size={28} />
+      </button>
+      {/* Optional: Hide this on mobile using CSS if not needed */}
+      <div className="ds-brand-name">MediTrack Lite</div>
+    </div>
+
 
       {/* ✅ Sidebar */}
       <div className={`ds-sidebar ${isOpen ? 'ds-open' : ''}`}>

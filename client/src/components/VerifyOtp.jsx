@@ -12,7 +12,7 @@ const VerifyOtp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/auth/verify-otp', { phone, otp });
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/verify-otp`, { phone, otp });
       navigate('/reset-password', { state: { phone } });
     } catch (err) {
       toast.error(err.response?.data?.message || 'Invalid OTP.');

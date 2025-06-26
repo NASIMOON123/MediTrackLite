@@ -3,6 +3,10 @@
         "question":"hello",
         "answer":"Hello.Welcome to MeditrackBot.How can I assist you."
     },
+    {
+      "question":"hi",
+      "answer":"Hello.Welcome to MeditrackBot.How can I assist you."
+  },
     
         {
           "question": "how can i book an appointment",
@@ -25,11 +29,19 @@
           "answer": "Log in to your dashboard, click on 'Profile', make your changes, and hit 'Save'."
         },
         {
+          "question": "how can i update my profile",
+          "answer": "Log in to your dashboard, click on 'Profile', make your changes, and hit 'Save'."
+        },
+        {
           "question": "how do i view my appointments",
           "answer": "Go to your Dashboard and click on 'Appointments' to see your scheduled bookings."
         },
         {
-          "question": "how can i cancel an appointment",
+          "question": "how can i view my appointments",
+          "answer": "Go to your Dashboard and click on 'Appointments' to see your scheduled bookings."
+        },
+        {
+          "question": "how can i cancel my appointment",
           "answer": "Navigate to your 'Appointments' section and click on the 'Cancel' button next to the appointment."
         },
         {
@@ -41,13 +53,14 @@
           "answer": "Once your appointment is booked, contact details or instructions may be shared in the 'Appointment Details' section."
         },
         {
+          "question": "how can i contact my doctor",
+          "answer": "Once your appointment is booked, contact details or instructions may be shared in the 'Appointment Details' section."
+        },
+        {
           "question": "is my data safe on meditracklite",
           "answer": "Yes, MediTrackLite ensures secure handling of your medical and personal data using encryption and access controls."
         },
-        {
-          "question": "can i reschedule an appointment",
-          "answer": "Yes, go to your appointments, click on the appointment, and select 'Reschedule' if the doctor allows it."
-        },
+       
         {
           "question": "what is a pending appointment",
           "answer": "A pending appointment means the doctor has not yet approved or confirmed your booking."
@@ -57,14 +70,181 @@
           "answer": "An approved doctor is one who has been verified by the admin and is available for booking."
         },
         {
-          "question": "how do i log out",
+          "question": "how do i logout",
+          "answer": "Click on your profile icon and select 'Logout' from the dropdown menu."
+        },
+        {
+          "question": "how can i logout",
           "answer": "Click on your profile icon and select 'Logout' from the dropdown menu."
         },
         {
           "question": "how do i report a technical issue",
           "answer": "Please use the 'Support' or 'Help' option on the website to report any bugs or issues you’re facing."
-        }
-      
+        },
+        {
+          "question": "how can i report a technical issue",
+          "answer": "Please use the 'Support' or 'Help' option on the website to report any bugs or issues you’re facing."
+        },
+        {
+          "question": "how do i login",
+          "answer": "Go to the homepage and click on 'Login'. Enter your registered email and password to access your dashboard."
+        },
+        {
+          "question": "how can i login",
+          "answer": "Go to the homepage and click on 'Login'. Enter your registered email and password to access your dashboard."
+        },
+        {
+          "question": "what if i enter the wrong password",
+          "answer": "If you enter the wrong password, an error message will appear. You can try again or use 'Forgot Password' to reset it."
+        },
+        {
+          "question": "can i log in with my phone number",
+          "answer": "Currently, login is only available using your registered email and password."
+        },
+        {
+          "question": "why can't i login",
+          "answer": "Ensure your email and password are correct. If the issue persists, try resetting your password or contact support."
+        },
+        {
+          "question": "can i stay logged in",
+          "answer": "Yes, you can choose the 'Remember Me' option while logging in to stay logged in on that device."
+        },
+        {
+          "question": "do I need to log in every time",
+          "answer": "If you don’t select 'Remember Me', you will need to log in every time for security reasons."
+        },
+        {
+          "question": "how can i register on meditracklite",
+          "answer": "Click on 'Login' from the homepage and select whether you're a patient or doctor.The it opens login form you don't have account .you click on the Don't have an account click on signup button. Fill in the required information and submit."
+        },
+        {
+          "question": "how do i know my registration is successful",
+          "answer": "You will receive a confirmation email. Once verified, you can log in and access your dashboard."
+        },
+        {
+          "question": "can i use meditracklite on my mobile",
+          "answer": "Yes, MediTrackLite is mobile-friendly and works on any modern browser."
+        },
+          {
+            "question": "i have stomach pain which doctor should i consult",
+            "answer": "You can consult a General Physician first. If needed, they may refer you to a Gastroenterologist for specialized care."
+          },
+          {
+            "question": "i have skin allergies which doctor is better to choose",
+            "answer": "A Dermatologist is the best choice for skin-related issues like allergies, rashes, or infections."
+          },
+          {
+            "question": "i have irregular periods which doctor should i book",
+            "answer": "For menstrual or reproductive health concerns, you should consult a Gynecologist."
+          },
+          {
+            "question": "my child has a fever which doctor should i choose",
+            "answer": "You should consult a Pediatrician, who specializes in treating children and infants."
+          },
+          {
+            "question": "i have chest pain which doctor is better to consult",
+            "answer": "For chest pain or heart-related symptoms, it’s best to consult a Cardiologist immediately."
+          },
+          {
+            "question": "i’m feeling stressed and anxious which doctor should i see",
+            "answer": "For mental health concerns like stress or anxiety, a Psychiatrist or Psychologist would be ideal."
+          },
+          {
+            "question": "i have tooth pain which doctor should i visit",
+            "answer": "For dental issues such as toothache or cavities, you should book an appointment with a Dentist."
+          },
+          {
+            "question": "i have a hearing problem which doctor should i consult",
+            "answer": "An ENT Specialist (Ear, Nose, and Throat) is the right doctor for hearing or sinus-related issues."
+          },
+          {
+            "question": "i twisted my ankle which doctor is best to treat it",
+            "answer": "An Orthopedic doctor is best for injuries related to bones, joints, or muscles."
+          },
+          {
+            "question": "i’m diabetic which doctor should i consult regularly",
+            "answer": "You should regularly consult an Endocrinologist or a General Physician with experience in diabetes management."
+          }, {
+            "question": "can i book multiple appointments",
+            "answer": "No, you can book two appointments per day with the same or different doctors as long as their slots are available."
+          },
+          
+            {
+              "question": "What is MediTrackLite?",
+              "answer": "MediTrackLite is a hospital management platform that connects patients with verified doctors, tracks appointments, prescriptions, and feedback in one place."
+            },
+            {
+              "question": "How do I register as a doctor or patient?",
+              "answer": "Go to the Login page, choose 'Doctor/Patient Login', and click on the 'Register' option. Fill the required details to sign up."
+            },
+            {
+              "question": "Can I change my password?",
+              "answer": "Yes, click on 'Forgot Password' on the login page and follow the instructions to reset it using OTP."
+            },
+            {
+              "question": "How can I book an appointment?",
+              "answer": "After logging in, go to the 'My Doctors' section, choose a doctor, and click 'Book Appointment'."
+            },
+            {
+              "question": "How do I know my appointment is approved?",
+              "answer": "Go to the 'Appointments' section. If your appointment is approved, the status will show as 'Approved' or 'In Progress'."
+            },
+            {
+              "question": "Can I see past prescriptions?",
+              "answer": "Yes, visit the 'Appointments' tab and click on 'View Prescription' or 'Download Prescription' for any completed appointment."
+            },
+            {
+              "question": "How can I give feedback to my doctor?",
+              "answer": "Once your appointment is completed, a feedback option will appear under that appointment card. Click the star rating to submit."
+            },
+            {
+              "question": "What does the 'Rejected' status mean?",
+              "answer": "It means your doctor has declined your appointment request. You may book with another doctor."
+            },
+            {
+              "question": "How do I approve or reject an appointment as a doctor?",
+              "answer": "Go to 'Pending Appointments' in your dashboard, and click 'Approve' or 'Reject' based on the request."
+            },
+            {
+              "question": "Can I view appointment analytics?",
+              "answer": "Yes, visit the 'Analytics' tab to see a pie chart of your appointments by status: Pending, In Progress, Completed, Rejected."
+            },
+            {
+              "question": "How can I check patient feedback?",
+              "answer": "In the 'Feedback' tab, you can view feedback submitted by patients after completed appointments."
+            },
+            {
+              "question": "What is the ‘Approval Status’ tab?",
+              "answer": "This shows the status of your account verification. Only approved doctors can accept appointments."
+            },
+            {
+              "question": "I have skin allergies, which doctor should I choose?",
+              "answer": "For skin-related issues, it’s best to book an appointment with a Dermatologist."
+            },
+            {
+              "question": "I am pregnant. Which specialist should I book an appointment with?",
+              "answer": "You should consult a Gynecologist for pregnancy-related concerns."
+            },
+            {
+              "question": "What types of doctors are available?",
+              "answer": "MediTrackLite includes General Physicians, Dermatologists, Gynecologists, Pediatricians, Cardiologists, and more."
+            },
+            {
+              "question": "How do I cancel or reschedule an appointment?",
+              "answer": "Go to 'Appointments', click on the one you want to change, and use the cancel/reschedule options if available."
+            },
+            {
+              "question": "How is OTP used in MediTrackLite?",
+              "answer": "OTP is used to verify your phone number when resetting your password. It appears on-screen for demo purposes."
+            },
+            {
+              "question": "I didn’t receive the OTP. What should I do?",
+              "answer": "Ensure your phone number is correct. If you try too many times, you’ll need to wait 15 minutes due to rate limits."
+            }
+          
+          
+        
+        
       
   ]
   

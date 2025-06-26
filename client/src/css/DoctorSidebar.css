@@ -89,14 +89,29 @@
   z-index: 999;
 }
 
-/* ✅ Media query for mobile responsiveness */
+
+/* Sidebar - Hidden on small screens */
+.ds-sidebar {
+  width: 250px;
+  background-color: #4a00e0;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 60px;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Mobile: Sidebar is hidden unless .ds-open is added */
 @media screen and (max-width: 768px) {
   .ds-sidebar {
     transform: translateX(-100%);
   }
 
   .ds-sidebar.ds-open {
-    transform: translateX(0);
+    transform: translateX(0); /* Slide in when open */
   }
 
   .ds-mobile-header {
@@ -106,15 +121,29 @@
     left: 0;
     right: 0;
     height: 60px;
-    background-color: #4a00e0;
+    width:80px;
+    /* background-color: #4a00e0; */
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
     z-index: 1001;
-    margin-bottom: 80px;
   }
+ .ds-hamburger {
+  height: 50px;
+  width: 50px;
+  background-color: rgba(74, 0, 224, 0.5); 
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px; 
+}
 
-  .ds-sidebar {
-    padding-top: 60px;
+
+  /* Hide brand name on mobile if you only want hamburger */
+  .ds-brand-name {
+    display: none;
   }
 }

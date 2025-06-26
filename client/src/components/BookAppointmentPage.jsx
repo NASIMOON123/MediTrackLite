@@ -27,11 +27,11 @@ const BookAppointmentPage = () => {
 
   useEffect(() => {
     const fetchDoctor = async () => {
-      const res = await axios.get(`/api/doctors/${id}`);
+      const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/doctors/${id}`);
       setDoctor(res.data);
     };
     const fetchBookedSlots = async () => {
-      const res = await axios.get(`/api/appointments/booked-slots/${id}`);
+      const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/appointments/booked-slots/${id}`);
       setBookedSlots(res.data);
     };
     fetchDoctor();
@@ -66,7 +66,7 @@ const BookAppointmentPage = () => {
         time: selectedTime,
         ...formData
       };
-      await axios.post('/api/appointments', payload, {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/appointments`, payload, {
         headers: { Authorization: `Bearer ${storedUser}` }
       });
       toast.success("Appointment booked!");

@@ -30,16 +30,6 @@ router.post('/', authMiddleware('patient'), async (req, res) => {
   }
 });
 
-// GET: All feedback for a doctor (only accessible by doctors)
-// router.get('/doctor/:id', authMiddleware('doctor'), async (req, res) => {
-//   try {
-//     const feedbacks = await Feedback.find({ doctorId: req.params.id })
-//       .populate('patientId', 'name');
-//     res.json(feedbacks);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
 
 // ✅ Use logged-in doctor's ID from the token (no need to pass it in URL)
 router.get('/me', authMiddleware('doctor'), async (req, res) => {

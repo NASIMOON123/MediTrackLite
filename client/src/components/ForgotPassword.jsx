@@ -12,7 +12,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/send-otp', { phone });
+      const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/send-otp`, { phone });
       if (res.data.otp) {
         setOtp(res.data.otp);
       }

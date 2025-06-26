@@ -11,7 +11,7 @@ const PatientDoctors = () => {
   const [selectedSpec, setSelectedSpec] = useState('');
 
   useEffect(() => {
-    axios.get('/api/doctors/approved')
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/doctors/approved`)
       .then(res => setDoctors(res.data))
       .catch(err => console.error(err));
   }, []);

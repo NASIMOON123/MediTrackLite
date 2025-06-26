@@ -32,7 +32,7 @@ const PatientAppointments = () => {
         const userId = user._id;
 
         const res = await axios.get(
-          `http://localhost:5000/api/appointments/status/patient/${userId}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/appointments/status/patient/${userId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -46,7 +46,7 @@ const PatientAppointments = () => {
 
           await Promise.all(completed.map(async (appt) => {
             try {
-              const fbRes = await axios.get(`http://localhost:5000/api/feedback/appointment/${appt._id}`, {
+              const fbRes = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/feedback/appointment/${appt._id}`, {
                 headers: { Authorization: `Bearer ${token}` },
               });
 

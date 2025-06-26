@@ -26,7 +26,7 @@ const DoctorAppointments = () => {
   const fetchAppointmentsByStatus = async (status) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/appointments/status/${status}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/appointments/status/${status}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setAppointments(res.data);
@@ -42,7 +42,7 @@ const DoctorAppointments = () => {
       const newCounts = {};
       for (const status of statuses) {
         const res = await axios.get(
-          `http://localhost:5000/api/appointments/status/${status}`,
+          `${process.env.REACT_APP_API_BASE_URL}/api/appointments/status/${status}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         newCounts[status] = res.data.length;
@@ -89,7 +89,7 @@ const DoctorAppointments = () => {
         : { status: newStatus };
 
       await axios.patch(
-        `http://localhost:5000/api/appointments/status/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/appointments/status/${id}`,
         updateData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

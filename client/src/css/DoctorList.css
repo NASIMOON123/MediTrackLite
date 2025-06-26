@@ -1,6 +1,4 @@
-/* .container{
-  margin-left: 780px;
-} */
+
 .doctor-list-page {
     padding: 2rem;
     background-color: #f8f9fc;
@@ -17,7 +15,7 @@
   }
   .doctor-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 30px;
     margin-left: 350px ;
     margin-right: 200px;
