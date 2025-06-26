@@ -18,7 +18,6 @@
 - Integrated chatbot available on every page
 - Answers predefined FAQs like:
   - How to book appointments
-  - Daily booking limits
   - Prescription download
   - Doctor approval status
 - Improves user support and experience
