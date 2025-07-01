@@ -323,7 +323,7 @@ const renderFeedback = () => {
             <div className="card shadow-sm h-100">
               <div className="card-body">
                 <h5 className="card-title text-primary">{fb.doctorId?.name || 'Doctor'}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">Patient: {fb.patientId?.name || 'Patient'}</h6>
+                <h6 className="card-subtitle mb-2 text-muted">Patient: {fb.patientId?.name || 'Unknown'}</h6>
                 <p className="card-text">"{fb.comment}"</p>
                 <p className="text-warning fw-bold">Rating: {fb.rating} ★</p>
                 <p className="text-muted">{new Date(fb.createdAt).toLocaleString()}</p>
