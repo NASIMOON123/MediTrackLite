@@ -315,18 +315,53 @@ const renderFeedback = () => {
   }
 
   return (
-    <div className="container mt-4">
-      <h3 className="mb-4">All Feedback & Ratings</h3>
+    <div className="container mt-3">
+      <h3 className="mb-4">All Feedbacks </h3>
       <div className="row">
         {allFeedbacks.map((fb, index) => (
           <div key={index} className="col-md-6 mb-3">
             <div className="card shadow-sm h-100">
               <div className="card-body">
-                <h5 className="card-title text-primary">{fb.doctorId?.name || 'Doctor'}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">Patient: {fb.patientId?.name || 'Unknown'}</h6>
-                <p className="card-text">"{fb.comment}"</p>
-                <p className="text-warning fw-bold">Rating: {fb.rating} ★</p>
-                <p className="text-muted">{new Date(fb.createdAt).toLocaleString()}</p>
+                {/* Doctor Info */}
+                <h5 className="card-title mb-2 text-primary">
+                  {fb.doctorName} <small className="text-muted">({fb.specialization})</small>
+                </h5>
+
+                {/* Patient Info */}
+                <h6 className="card-subtitle mb-2 text-muted">Patient: {fb.patientName}</h6>
+
+                {/* Rating Stars */}
+                <div className="mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        color: i < fb.rating ? '#FFD700' : '#ddd',
+                        fontSize: '18px',
+                      }}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+
+                {/* Comment only if exists */}
+                {fb.comment && fb.comment.trim() !== '' && (
+                  <p
+                    className="card-text fst-italic text-dark"
+                    style={{ fontSize: '0.95rem' }}
+                  >
+                    "{fb.comment}"
+                  </p>
+                )}
+
+                {/* Date */}
+                <p
+                  className="text-muted mt-2"
+                  style={{ fontSize: '0.8rem' }}
+                >
+                  {new Date(fb.createdAt).toLocaleString()}
+                </p>
               </div>
             </div>
           </div>
