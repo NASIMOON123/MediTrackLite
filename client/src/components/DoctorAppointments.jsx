@@ -149,9 +149,23 @@ const DoctorAppointments = () => {
               <p><strong>Time:</strong> {app.time}</p>
               <p><strong>Status:</strong> <span className={`status ${app.status.toLowerCase().replace(' ', '-')}`}>{app.status}</span></p>
 
-              {statusFilter === 'Approved' && (
-                <button onClick={() => updateStatus(app._id, 'In Progress')} disabled={loading}>Start Treatment</button>
-              )}
+              {statusFilter === 'Approved' && (() => {
+                const appointmentDateTime = new Date(`${app.date} ${app.time}`);
+                const currentTime = new Date();
+
+                const canStart = currentTime >= appointmentDateTime;
+
+                return (
+                  <button
+                    onClick={() => updateStatus(app._id, 'In Progress')}
+                    disabled={!canStart || loading}
+                    title={!canStart ? 'You can only start treatment at or after the appointment time' : ''}
+                  >
+                    Start Treatment
+                  </button>
+                );
+              })()}
+
 
               {statusFilter === 'In Progress' && editId !== app._id && (
                 <button onClick={() => setEditId(app._id)}>Add Prescription</button>

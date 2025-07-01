@@ -43,38 +43,67 @@ const BookAppointmentPage = () => {
   const isSlotBooked = (slot) =>
     selectedDate && bookedSlots.includes(`${selectedDate}|${slot}`);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    if(!selectedDate){
-      toast.error('Please select a date for the appointment.');
-      return;
-    }
-    if(!selectedTime){
-      toast.error('Please select a Time slot.');
-      return;
-    }
-    try {
-      const storedUser = JSON.parse(localStorage.getItem('user'));
-      const payload = {
-        doctorId: doctor._id,
-        doctorName: doctor.name,
-        patientId: storedUser._id,
-        patientName: storedUser.name,
-        email: storedUser.email,
-        date: selectedDate,
-        time: selectedTime,
-        ...formData
-      };
-      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/appointments`, payload, {
-        headers: { Authorization: `Bearer ${storedUser}` }
-      });
-      toast.success("Appointment booked!");
-      navigate('/patient-dashboard');
-    } catch (err) {
-      toast.error(err.response?.data?.msg || "Booking failed");
-    }
+  //   if(!selectedDate){
+  //     toast.error('Please select a date for the appointment.');
+  //     return;
+  //   }
+  //   if(!selectedTime){
+  //     toast.error('Please select a Time slot.');
+  //     return;
+  //   }
+  //   try {
+  //     const storedUser = JSON.parse(localStorage.getItem('user'));
+  //     const payload = {
+  //       doctorId: doctor._id,
+  //       doctorName: doctor.name,
+  //       patientId: storedUser._id,
+  //       patientName: storedUser.name,
+  //       email: storedUser.email,
+  //       date: selectedDate,
+  //       time: selectedTime,
+  //       ...formData
+  //     };
+  //     await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/appointments`, payload, {
+  //       headers: { Authorization: `Bearer ${storedUser}` }
+  //     });
+  //     toast.success("Appointment booked!");
+  //     navigate('/patient-dashboard');
+  //   } catch (err) {
+  //     toast.error(err.response?.data?.msg || "Booking failed");
+  //   }
+  // };
+  const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (!selectedDate || !selectedTime) {
+    toast.error('Please select date and time');
+    return;
+  }
+
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+
+  if (!storedUser || !storedUser._id) {
+    toast.error("User not logged in. Please log in again.");
+    return;
+  }
+
+  const payload = {
+    doctorId: doctor._id,
+    doctorName: doctor.name,
+    patientId: storedUser._id,
+    patientName: storedUser.name,
+    email: storedUser.email,
+    date: selectedDate,
+    time: selectedTime,
+    ...formData
   };
+
+  navigate('/patient-dashboard/payment', { state: { payload, doctor } });
+};
+
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -111,16 +140,35 @@ const BookAppointmentPage = () => {
 
             <h3>Select Time Slot</h3>
             <div className="slots-container">
-              {timeSlots.map(slot => (
+  
+
+            {timeSlots.map(slot => {
+              const [hourStr, minuteStr] = slot.split(/[: ]/);
+              let slotHour = parseInt(hourStr);
+              let slotMin = parseInt(minuteStr);
+              const isPM = slot.includes('pm');
+              if (isPM && slotHour !== 12) slotHour += 12;
+              if (!isPM && slotHour === 12) slotHour = 0;
+
+              const slotTime = new Date(selectedDate + 'T' + `${slotHour.toString().padStart(2, '0')}:${slotMin.toString().padStart(2, '0')}:00`);
+              const now = new Date();
+
+              const isToday = selectedDate === today;
+              const isPastSlot = isToday && slotTime < now;
+
+              return (
                 <button
                   key={slot}
                   className={`slot-btn ${selectedTime === slot ? 'selected' : ''}`}
                   onClick={() => handleSlotSelect(slot)}
-                  disabled={isSlotBooked(slot)}
+                  disabled={isSlotBooked(slot) || isPastSlot}
                 >
                   {slot}
                 </button>
-              ))}
+              );
+            })}
+
+
             </div>
 
             <form onSubmit={handleSubmit} className="appointment-form">
@@ -157,7 +205,7 @@ const BookAppointmentPage = () => {
                 <option value="other">Other</option>
               </select>
 
-              <button type="submit" className="submit-btn">Book Appointment</button>
+              <button type="submit" className="submit-btn">Pay & Book</button>
             </form>
           </div>
         </div>

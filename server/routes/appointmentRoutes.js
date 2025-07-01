@@ -107,6 +107,19 @@ router.patch('/status/:id', authMiddleware('doctor'), async (req, res) => {
       appointment.status = status;
     }
 
+
+    if (status === 'In Progress') {
+        const appointmentTime = new Date(`${appointment.date} ${appointment.time}`);
+        const currentTime = new Date();
+
+        if (currentTime < appointmentTime) {
+          return res.status(400).json({
+            message: 'Cannot start treatment before scheduled appointment time',
+          });
+        }
+      }
+
+
     if (status === 'Completed') {
       if (!prescription) {
         return res.status(400).json({ message: 'Prescription is required to complete appointment' });

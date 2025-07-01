@@ -32,7 +32,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import VerifyOtp from './components/VerifyOtp';
 import ResetPassword from './components/ResetPassword';
 import Chatbot from './components/Chatbot'; // Make sure path is correct
-
+import FakePaymentPage from './components/FakePaymentPage';
 
 // Removed ProtectedRoute import
 
@@ -81,7 +81,7 @@ function App() {
         <Route path="profile" element={<PatientProfile user={user} />} />
         <Route path="appointments" element={<PatientAppointments user={user} />} />
         <Route path="doctors" element={<PatientDoctors user={user} />} />
-      
+        <Route path="payment" element={<FakePaymentPage />} />
       </Route>
 
         {/* Doctor Routes */}
