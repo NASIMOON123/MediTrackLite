@@ -31,7 +31,12 @@ const feedbackSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  deleteRequested: {
+  type: Boolean,
+  default: false,
+  },
+
 });
 
 const Feedback = mongoose.model('Feedback', feedbackSchema);

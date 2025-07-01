@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const DoctorFeedbackSummary = () => {
   const [averageRating, setAverageRating] = useState(null);
@@ -29,7 +30,29 @@ const DoctorFeedbackSummary = () => {
     if (token) fetchFeedbackSummary();
   }, [token]);
 
-  if (loading) return <p className="text-center mt-6 text-purple-700 font-medium">Loading feedback summary...</p>;
+  const handleRequestDelete = async (feedbackId) => {
+    try {
+      await axios.put(
+        `${process.env.REACT_APP_API_BASE_URL}/api/feedback/request-delete/${feedbackId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      toast.success('Deletion request sent');
+      setFeedbacks((prev) =>
+        prev.map((f) =>
+          f._id === feedbackId ? { ...f, deleteRequested: true } : f
+        )
+      );
+    } catch (err) {
+      console.error('Failed to request deletion:', err);
+      toast.error('Failed to request deletion');
+    }
+  };
+
+  if (loading)
+    return <p className="text-center mt-6 text-purple-700 font-medium">Loading feedback summary...</p>;
 
   return (
     <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-3xl mx-auto mt-6 transition-all duration-300">
@@ -62,9 +85,20 @@ const DoctorFeedbackSummary = () => {
               </div>
 
               {f.comment?.trim() && (
-                <p className="text-gray-800 font-medium italic">
+                <p className="text-gray-800 font-medium italic mb-2">
                   “{f.comment}”
                 </p>
+              )}
+
+              {!f.deleteRequested ? (
+                <button
+                  className="text-sm text-red-600 border border-red-400 px-3 py-1 rounded hover:bg-red-50 transition"
+                  onClick={() => handleRequestDelete(f._id)}
+                >
+                   Request Feedback Deletion
+                </button>
+              ) : (
+                <p className="text-sm text-red-500 italic">Deletion Requested</p>
               )}
             </li>
           ))}

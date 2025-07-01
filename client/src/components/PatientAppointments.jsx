@@ -1,8 +1,11 @@
+
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/PatientAppointment.css';
-import FeedbackModal from './FeedbackModal'; // Ensure path is correct
+import FeedbackModal from './FeedbackModal';
+import { toast } from 'react-toastify';
 
 const PatientAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -15,7 +18,6 @@ const PatientAppointments = () => {
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [submittedFeedbacks, setSubmittedFeedbacks] = useState({});
   const [showFullFeedback, setShowFullFeedback] = useState({});
-
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -39,30 +41,34 @@ const PatientAppointments = () => {
         );
 
         setAppointments(res.data);
-        // Fetch feedback for completed appointments
-          const completed = res.data.filter((a) => a.status === 'Completed');
-
+        const completed = res.data.filter((a) => a.status === 'Completed');
         const feedbackMap = {};
 
-          await Promise.all(completed.map(async (appt) => {
+        await Promise.all(
+          completed.map(async (appt) => {
             try {
-              const fbRes = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/feedback/appointment/${appt._id}`, {
-                headers: { Authorization: `Bearer ${token}` },
-              });
+              const fbRes = await axios.get(
+                `${process.env.REACT_APP_API_BASE_URL}/api/feedback/appointment/${appt._id}`,
+                {
+                  headers: { Authorization: `Bearer ${token}` },
+                }
+              );
 
               if (fbRes.data?.comment || fbRes.data?.rating) {
                 feedbackMap[appt._id] = {
+                  _id: fbRes.data._id,
                   comment: fbRes.data.comment,
-                  rating: fbRes.data.rating
+                  rating: fbRes.data.rating,
+                  deleteRequested: fbRes.data.deleteRequested || false,
                 };
               }
-            } catch (err) {
+            } catch {
               feedbackMap[appt._id] = null;
             }
-          }));
+          })
+        );
 
-          setSubmittedFeedbacks(feedbackMap);
-
+        setSubmittedFeedbacks(feedbackMap);
         setFilteredAppointments(res.data);
         setLoading(false);
       } catch (err) {
@@ -96,7 +102,7 @@ const PatientAppointments = () => {
   const groupMedicinesByTiming = (medicines) => {
     const timings = ['Morning', 'Afternoon', 'Evening', 'Night'];
     const grouped = {};
-    timings.forEach(time => {
+    timings.forEach((time) => {
       grouped[time] = medicines.filter(
         (m) => m.timing?.toLowerCase() === time.toLowerCase()
       );
@@ -104,23 +110,47 @@ const PatientAppointments = () => {
     return grouped;
   };
 
+  const requestDelete = async (feedbackId) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.put(
+        `${process.env.REACT_APP_API_BASE_URL}/api/feedback/request-delete/${feedbackId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      toast.success('Deletion request sent');
+      setSubmittedFeedbacks((prev) => {
+        const updated = { ...prev };
+        for (const key in updated) {
+          if (updated[key]?._id === feedbackId) {
+            updated[key].deleteRequested = true;
+          }
+        }
+        return updated;
+      });
+    } catch (err) {
+      toast.error('Failed to request deletion');
+    }
+  };
+
   const handlePrint = (appointment) => {
     let medicineHTML = '';
-
     if (appointment.medicines?.length > 0) {
       const grouped = groupMedicinesByTiming(appointment.medicines);
-
       medicineHTML += '<strong>Medicines:</strong>';
-     Object.entries(grouped).forEach(([timing, meds]) => {
-  if (meds.length > 0) {
-    const medListHTML = meds
-      .map((med) => `<li><strong>${med.name}</strong> - ${med.dosage} (${med.frequency})</li>`)
-      .join('');
-
-    medicineHTML += `<p><u>${timing}:</u></p><ul>${medListHTML}</ul>`;
-  }
-});
-
+      Object.entries(grouped).forEach(([timing, meds]) => {
+        if (meds.length > 0) {
+          const medListHTML = meds
+            .map(
+              (med) =>
+                `<li><strong>${med.name}</strong> - ${med.dosage} (${med.frequency})</li>`
+            )
+            .join('');
+          medicineHTML += `<p><u>${timing}:</u></p><ul>${medListHTML}</ul>`;
+        }
+      });
     }
 
     const printContent = `
@@ -133,21 +163,22 @@ const PatientAppointments = () => {
     `;
 
     const newWindow = window.open('', '_blank');
-    newWindow.document.write(`<html><head><title>Prescription</title></head><body>${printContent}</body></html>`);
+    newWindow.document.write(
+      `<html><head><title>Prescription</title></head><body>${printContent}</body></html>`
+    );
     newWindow.document.close();
     newWindow.print();
   };
 
   return (
     <div className="patient-appointment-wrapper">
-
       <div className="container-fluid">
         <h2 className="mb-4 text-center">My Appointments</h2>
 
-         {/* Status Filter as Horizontal Tabs */}
-          <div className="mb-4 d-flex justify-content-center">
-            <ul className="nav nav-tabs flex-wrap justify-content-center">
-              {['All', 'Pending', 'Approved', 'In Progress', 'Rejected', 'Completed'].map((status) => (
+        <div className="mb-4 d-flex justify-content-center">
+          <ul className="nav nav-tabs flex-wrap justify-content-center">
+            {['All', 'Pending', 'Approved', 'In Progress', 'Rejected', 'Completed'].map(
+              (status) => (
                 <li className="nav-item" key={status}>
                   <button
                     className={`nav-link ${statusFilter === status ? 'active' : ''}`}
@@ -156,11 +187,10 @@ const PatientAppointments = () => {
                     {status}
                   </button>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-
+              )
+            )}
+          </ul>
+        </div>
 
         {loading ? (
           <p className="text-center">Loading appointments...</p>
@@ -175,24 +205,33 @@ const PatientAppointments = () => {
                 <div className="card h-100 shadow-sm" style={{ fontSize: '1rem' }}>
                   <div className="card-body py-2 px-3">
                     <div style={{ fontSize: '1rem', lineHeight: '1.6' }}>
-                      <strong>Date:</strong> {appointment.date}<br />
-                      <strong>Time:</strong> {appointment.time}<br />
-                      <strong>Doctor:</strong> {appointment.doctorId.name || appointment.doctorId}<br />
-                      <strong>Symptom:</strong> {appointment.symptoms || 'N/A'}<br />
-                      
-                      <span className={`status-label ${appointment.status.toLowerCase().replace(/\s/g, '-')}`}>
-                 {appointment.status}
-                  </span>
-                      <br/>
+                      <strong>Date:</strong> {appointment.date}
+                      <br />
+                      <strong>Time:</strong> {appointment.time}
+                      <br />
+                      <strong>Doctor:</strong>{' '}
+                      {appointment.doctorId.name || appointment.doctorId}
+                      <br />
+                      <strong>Symptom:</strong> {appointment.symptoms || 'N/A'}
+                      <br />
+                      <span
+                        className={`status-label ${appointment.status
+                          .toLowerCase()
+                          .replace(/\s/g, '-')}`}
+                      >
+                        {appointment.status}
+                      </span>
+                      <br />
                       {appointment.status === 'Completed' && (
                         <div className="mt-3">
                           <button
                             className="btn btn-sm btn-info me-2"
                             onClick={() => togglePrescription(appointment._id)}
                           >
-                            {openPrescriptions[appointment._id] ? 'Hide Prescription' : 'View Prescription'}
+                            {openPrescriptions[appointment._id]
+                              ? 'Hide Prescription'
+                              : 'View Prescription'}
                           </button>
-
                           <button
                             className="btn btn-sm btn-outline-primary me-2"
                             onClick={() => handlePrint(appointment)}
@@ -211,25 +250,32 @@ const PatientAppointments = () => {
                               📝 Leave Feedback
                             </button>
                           ) : (
-                            
-                            <span className="text-success small"><br/>You have already submitted feedback.</span>
-
+                            <span className="text-success small">
+                              <br />
+                              You have already submitted feedback.
+                            </span>
                           )}
 
                           {openPrescriptions[appointment._id] && (
                             <div className="border rounded p-3 mt-3 bg-light">
-                              <p><strong>Doctor's Notes:</strong> {appointment.prescription || 'N/A'}</p>
+                              <p>
+                                <strong>Doctor's Notes:</strong>{' '}
+                                {appointment.prescription || 'N/A'}
+                              </p>
                               {appointment.medicines?.length > 0 && (
                                 <>
                                   <strong>Medicines:</strong>
-                                  {Object.entries(groupMedicinesByTiming(appointment.medicines)).map(([timing, meds]) =>
+                                  {Object.entries(
+                                    groupMedicinesByTiming(appointment.medicines)
+                                  ).map(([timing, meds]) =>
                                     meds.length > 0 ? (
                                       <div key={timing}>
                                         <u>{timing}:</u>
                                         <ul>
                                           {meds.map((med, idx) => (
                                             <li key={idx}>
-                                              <strong>{med.name}</strong> - {med.dosage} ({med.frequency})
+                                              <strong>{med.name}</strong> - {med.dosage} (
+                                              {med.frequency})
                                             </li>
                                           ))}
                                         </ul>
@@ -240,39 +286,65 @@ const PatientAppointments = () => {
                               )}
                             </div>
                           )}
-                         {submittedFeedbacks[appointment._id] && (
-                        <div className="feedback-box mt-3">
-                          <strong>Feedback:</strong>
-                          <p className="fst-italic mb-1">
-                            {showFullFeedback[appointment._id]
-                              ? submittedFeedbacks[appointment._id].comment
-                              : submittedFeedbacks[appointment._id].comment.slice(0, 100) + (submittedFeedbacks[appointment._id].comment.length > 100 ? '...' : '')}
-                          </p>
-                          {submittedFeedbacks[appointment._id].comment.length > 100 && (
-                            <button
-                              className="btn btn-link p-0"
-                              onClick={() =>
-                                setShowFullFeedback((prev) => ({
-                                  ...prev,
-                                  [appointment._id]: !prev[appointment._id],
-                                }))
-                              }
-                            >
-                              {showFullFeedback[appointment._id] ? 'Show less' : 'Show more'}
-                            </button>
+
+                          {submittedFeedbacks[appointment._id] && (
+                            <div className="feedback-box mt-3">
+                              <strong>Feedback:</strong>
+                              <p className="fst-italic mb-1">
+                                {showFullFeedback[appointment._id]
+                                  ? submittedFeedbacks[appointment._id].comment
+                                  : submittedFeedbacks[appointment._id].comment.slice(0, 100) +
+                                    (submittedFeedbacks[appointment._id].comment.length > 100
+                                      ? '...'
+                                      : '')}
+                              </p>
+                              {submittedFeedbacks[appointment._id].comment.length > 100 && (
+                                <button
+                                  className="btn btn-link p-0"
+                                  onClick={() =>
+                                    setShowFullFeedback((prev) => ({
+                                      ...prev,
+                                      [appointment._id]: !prev[appointment._id],
+                                    }))
+                                  }
+                                >
+                                  {showFullFeedback[appointment._id]
+                                    ? 'Show less'
+                                    : 'Show more'}
+                                </button>
+                              )}
+                              <div className="stars mb-0">
+                                {[...Array(5)].map((_, i) => (
+                                  <span
+                                    key={i}
+                                    className={
+                                      i < submittedFeedbacks[appointment._id].rating
+                                        ? 'star filled'
+                                        : 'star'
+                                    }
+                                  >
+                                    ★
+                                  </span>
+                                ))}
+                              </div>
+                              {!submittedFeedbacks[appointment._id]?.deleteRequested ? (
+                                <button
+                                  className="btn btn-sm btn-outline-danger mt-2"
+                                  onClick={() =>
+                                    requestDelete(submittedFeedbacks[appointment._id]._id)
+                                  }
+                                >
+                                  Request Feedback Deletion
+                                </button>
+                              ) : (
+                                <p className="text-danger small mt-2">
+                                  Deletion Requested
+                                </p>
+                              )}
+                            </div>
                           )}
-                          <div className="stars mb-0">
-                            {[...Array(5)].map((_, i) => (
-                              <span key={i} className={i < submittedFeedbacks[appointment._id].rating ? 'star filled' : 'star'}>★</span>
-                            ))}
-                          </div>
                         </div>
                       )}
-
-
-                        </div>
-                      )}
-
                     </div>
                   </div>
                 </div>
@@ -280,9 +352,8 @@ const PatientAppointments = () => {
             ))}
           </div>
         )}
-           </div>
+      </div>
 
-     {/* Render Feedback Modal here */}
       {showModal && selectedAppointment && (
         <FeedbackModal
           show={showModal}
@@ -293,9 +364,7 @@ const PatientAppointments = () => {
           }}
         />
       )}
-
     </div>
-
   );
 };
 

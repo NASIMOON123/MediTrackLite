@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import '../css/DoctorAppointments.css';
 import { FaTimes } from 'react-icons/fa';
 
-
 const DoctorAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [statusFilter, setStatusFilter] = useState('Approved');
@@ -108,6 +107,19 @@ const DoctorAppointments = () => {
     }
   };
 
+  const requestDelete = async (feedbackId) => {
+    try {
+      await axios.put(
+        `${process.env.REACT_APP_API_BASE_URL}/api/feedback/request-delete/${feedbackId}`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success('Deletion request sent');
+    } catch {
+      toast.error('Failed to request deletion');
+    }
+  };
+
   return (
     <div className="doctor-container">
       <h1 className="title">My Appointments</h1>
@@ -150,47 +162,46 @@ const DoctorAppointments = () => {
                   <textarea value={prescription} onChange={(e) => setPrescription(e.target.value)} placeholder="Write prescription..." rows={3} />
                   {medicines.map((med, i) => (
                     <div key={i} className="med-block">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  value={med.name}
-                  onChange={(e) => handleMedicineChange(i, 'name', e.target.value)}
-                  className="med-input"
-                />
-                <input
-                  type="text"
-                  placeholder="Dosage"
-                  value={med.dosage}
-                  onChange={(e) => handleMedicineChange(i, 'dosage', e.target.value)}
-                  className="med-input"
-                />
-                <div className="med-row">
-                  <select
-                    value={med.frequency}
-                    onChange={(e) => handleMedicineChange(i, 'frequency', e.target.value)}
-                  >
-                    <option value="">Freq</option>
-                    <option>Once daily (OD)</option>
-                    <option>Twice daily (BD)</option>
-                    <option>Three times daily (TID)</option>
-                  </select>
-                  <select
-                    value={med.timing}
-                    onChange={(e) => handleMedicineChange(i, 'timing', e.target.value)}
-                  >
-                    <option value="">Timing</option>
-                    {getTimingOptions(med.frequency).map((opt, idx) => (
-                      <option key={idx}>{opt}</option>
-                    ))}
-                  </select>
-                  {medicines.length > 1 && (
-                    <button onClick={() => removeMedicineRow(i)} className="remove-med" title="Remove medicine">
-                      <FaTimes />
-                    </button>
-                  )}
-                </div>
-              </div>
-
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        value={med.name}
+                        onChange={(e) => handleMedicineChange(i, 'name', e.target.value)}
+                        className="med-input"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Dosage"
+                        value={med.dosage}
+                        onChange={(e) => handleMedicineChange(i, 'dosage', e.target.value)}
+                        className="med-input"
+                      />
+                      <div className="med-row">
+                        <select
+                          value={med.frequency}
+                          onChange={(e) => handleMedicineChange(i, 'frequency', e.target.value)}
+                        >
+                          <option value="">Freq</option>
+                          <option>Once daily (OD)</option>
+                          <option>Twice daily (BD)</option>
+                          <option>Three times daily (TID)</option>
+                        </select>
+                        <select
+                          value={med.timing}
+                          onChange={(e) => handleMedicineChange(i, 'timing', e.target.value)}
+                        >
+                          <option value="">Timing</option>
+                          {getTimingOptions(med.frequency).map((opt, idx) => (
+                            <option key={idx}>{opt}</option>
+                          ))}
+                        </select>
+                        {medicines.length > 1 && (
+                          <button onClick={() => removeMedicineRow(i)} className="remove-med" title="Remove medicine">
+                            <FaTimes />
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   ))}
                   <button className="add-med" onClick={addMedicineRow}>+ Add Medicine</button>
                   <button className="submit-btn" onClick={() => updateStatus(app._id, 'Completed')} disabled={!prescription.trim()}>Complete</button>
