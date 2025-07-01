@@ -432,7 +432,7 @@ const AdminDashboard = () => {
    
   const handleDeactivate = async (doctorId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/deactivate-doctor/${doctorId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/admin/deactivate-doctor/${doctorId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
