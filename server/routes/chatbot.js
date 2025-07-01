@@ -42,5 +42,15 @@ router.post('/', async (req, res) => {
     return res.status(500).json({ reply: 'Server error while fetching FAQs.' });
   }
 });
+router.get('/faqs', (req, res) => {
+  try {
+    const categories = JSON.parse(fs.readFileSync(faqsPath, 'utf8'));
+    res.json(categories);
+  } catch (err) {
+    console.error('Error loading FAQs:', err);
+    res.status(500).json({ error: 'Failed to load FAQs' });
+  }
+});
+
 
 export default router;
