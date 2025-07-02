@@ -104,34 +104,62 @@ const Chatbot = () => {
           </div>
 
           {faqDrawerOpen && (
-            <div className="faq-drawer">
-              <input
-                type="text"
-                placeholder="Search FAQs..."
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-                className="faq-search"
-              />
-              <div className="faq-categories">
-                {filteredFaqs.map((cat, idx) => (
-                  <div key={idx} className="faq-category">
-                    <h4>{cat.category}</h4>
+              <div className="faq-drawer">
+                <input
+                  type="text"
+                  placeholder="Search FAQs..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="faq-search"
+                />
+
+                {searchTerm.trim() ? (
+                  <div className="faq-search-results">
+                    <h4>Search Results</h4>
                     <ul>
-                      {cat.qa.map((q, i) => (
-                        <li
-                          key={i}
-                          onClick={() => setInput(q.question)}
-                          className="faq-question"
-                        >
-                          {q.question}
-                        </li>
-                      ))}
+                      {filteredFaqs.flatMap(cat =>
+                        cat.qa.map((q, i) => (
+                          <li
+                            key={`${cat.category}-${i}`}
+                            className="faq-question"
+                            onClick={() => {
+                              setInput(q.question);
+                              setFaqDrawerOpen(false);
+                            }}
+                          >
+                            {q.question}
+                          </li>
+                        ))
+                      )}
+                      {filteredFaqs.length === 0 && <p>No matching questions found.</p>}
                     </ul>
                   </div>
-                ))}
+                ) : (
+                  <div className="faq-categories">
+                    {faqs.map((cat, idx) => (
+                      <div key={idx} className="faq-category">
+                        <h4>{cat.category}</h4>
+                        <ul>
+                          {cat.qa.map((q, i) => (
+                            <li
+                              key={i}
+                              onClick={() => {
+                                setInput(q.question);
+                                setFaqDrawerOpen(false);
+                              }}
+                              className="faq-question"
+                            >
+                              {q.question}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+            )}
+
 
           <div className="chat-body">
             {messages.map((msg, i) => (

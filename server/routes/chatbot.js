@@ -5,6 +5,7 @@ import path from 'path';
 const router = express.Router();
 const faqsPath = path.resolve('faqs.json');
 
+// POST route: chatbot response based on question match
 router.post('/', async (req, res) => {
   const { message } = req.body;
 
@@ -42,6 +43,8 @@ router.post('/', async (req, res) => {
     return res.status(500).json({ reply: 'Server error while fetching FAQs.' });
   }
 });
+
+// GET route: fetch all categorized FAQs
 router.get('/faqs', (req, res) => {
   try {
     const categories = JSON.parse(fs.readFileSync(faqsPath, 'utf8'));
@@ -51,6 +54,5 @@ router.get('/faqs', (req, res) => {
     res.status(500).json({ error: 'Failed to load FAQs' });
   }
 });
-
 
 export default router;
