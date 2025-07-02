@@ -98,9 +98,16 @@ const Chatbot = () => {
         <div className="chatbot">
           <div className="chat-header" onClick={() => setOpen(false)}>
             MediBot 🤖
-            <button onClick={() => setFaqDrawerOpen(prev => !prev)} className="faq-toggle">
-              {faqDrawerOpen ? '❌ Close FAQ' : '📚 FAQs'}
-            </button>
+            <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setFaqDrawerOpen((prev) => !prev);
+            }}
+            className="faq-toggle"
+          >
+            {faqDrawerOpen ? '❌ Close FAQ' : '📚 FAQs'}
+          </button>
+
           </div>
 
           {faqDrawerOpen && (

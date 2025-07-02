@@ -10,18 +10,12 @@
         "question": "how do i login",
         "answer": "Go to the homepage and click on 'Login'. Enter your registered email and password to access your dashboard."
       },
-      {
-        "question": "how can i login",
-        "answer": "Go to the homepage and click on 'Login'. Enter your registered email and password to access your dashboard."
-      },
+    
       {
         "question": "how do i logout",
         "answer": "Click on your profile icon and select 'Logout' from the dropdown menu."
-      },
-      {
-        "question": "how can i logout",
-        "answer": "Click on your profile icon and select 'Logout' from the dropdown menu."
       }
+      
     ]
   },
   {
@@ -35,10 +29,7 @@
         "question": "how do i view my appointments",
         "answer": "Go to your Dashboard and click on 'Appointments' to see your scheduled bookings."
       },
-      {
-        "question": "how can i view my appointments",
-        "answer": "Go to your Dashboard and click on 'Appointments' to see your scheduled bookings."
-      },
+      
       {
         "question": "how can i cancel my appointment",
         "answer": "Navigate to your 'Appointments' section and click on the 'Cancel' button next to the appointment."
@@ -60,10 +51,8 @@
         "question": "how do i contact my doctor",
         "answer": "Once your appointment is booked, contact details or instructions may be shared in the 'Appointment Details' section."
       },
-      {
-        "question": "how can i contact my doctor",
-        "answer": "Once your appointment is booked, contact details or instructions may be shared in the 'Appointment Details' section."
-      },
+      
+     
       {
         "question": "what does approved doctor mean",
         "answer": "An approved doctor is one who has been verified by the admin and is available for booking."
@@ -75,10 +64,6 @@
     "qa": [
       {
         "question": "how do i update my profile",
-        "answer": "Log in to your dashboard, click on 'Profile', make your changes, and hit 'Save'."
-      },
-      {
-        "question": "how can i update my profile",
         "answer": "Log in to your dashboard, click on 'Profile', make your changes, and hit 'Save'."
       }
     ]
@@ -145,17 +130,10 @@
         "question": "can i log in with my phone number",
         "answer": "Currently, login is only available using your registered email and password."
       },
-      {
-        "question": "can i stay logged in",
-        "answer": "Yes, you can choose the 'Remember Me' option while logging in to stay logged in on that device."
-      },
-      {
-        "question": "do I need to log in every time",
-        "answer": "If you don\u2019t select 'Remember Me', you will need to log in every time for security reasons."
-      },
+      
       {
         "question": "how do i know my registration is successful",
-        "answer": "You will receive a confirmation email. Once verified, you can log in and access your dashboard."
+        "answer": "You will receive a confirmation notification. Once verified, you can log in and access your dashboard."
       }
     ]
   }
