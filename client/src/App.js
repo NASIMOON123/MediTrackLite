@@ -32,7 +32,7 @@ import DoctorAppointments from './components/DoctorAppointments';
 import ForgotPassword from "./components/ForgotPassword";
 import VerifyOtp from './components/VerifyOtp';
 import ResetPassword from './components/ResetPassword';
-import Chatbot from './components/Chatbot'; // Make sure path is correct
+import Chatbot from './components/Chatbot'; 
 
 import PaymentPage from './components/PaymentPage';
 
