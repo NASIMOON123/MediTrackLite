@@ -111,6 +111,10 @@
         "answer": "Hello.Welcome to MeditrackBot.How can I assist you."
       },
       {
+        "question": "thank you",
+        "answer": "You're most welcome! 😊 If you need anything else, just ask."
+      },
+      {
         "question": "how to reset my password",
         "answer": "Use the 'Forgot Password' option on the login page and follow the instructions."
       },

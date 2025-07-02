@@ -51,16 +51,16 @@ export const updateDoctorProfile = async (req, res) => {
     const updates = req.body;
 
     // ✅ Safely apply only defined, non-empty fields
-    Object.entries(updates).forEach(([key, value]) => {
+   Object.entries(updates).forEach(([key, value]) => {
       if (
+        key !== 'password' &&            // Protect password
         value !== undefined &&
-        value !== null &&
-        value !== '' &&
-        key !== 'password' // safety
+        value !== null
       ) {
         doctor[key] = value;
       }
     });
+
 
     await doctor.save();
     doctor = doctor.toObject();
