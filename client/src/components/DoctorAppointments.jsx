@@ -100,8 +100,11 @@ const DoctorAppointments = () => {
       setMedicines([{ name: '', dosage: '', frequency: '', timing: '' }]);
 
       toast.success(newStatus === 'Completed' ? "Prescription added!" : "Status updated!");
-    } catch {
-      toast.error('Failed to update appointment.');
+    } catch (err) {
+  const msg = err.response?.data?.message || 'Failed to update appointment.';
+  toast.error(msg);
+
+
     } finally {
       setLoading(false);
     }

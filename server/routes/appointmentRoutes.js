@@ -109,15 +109,26 @@ router.patch('/status/:id', authMiddleware('doctor'), async (req, res) => {
 
 
     if (status === 'In Progress') {
-        const appointmentTime = new Date(`${appointment.date} ${appointment.time}`);
-        const currentTime = new Date();
+      // Convert appointment.date and appointment.time into accurate Date object in IST
+      const [hourStr, minuteStr, period] = appointment.time.match(/(\d+):(\d+)\s*(am|pm)/i).slice(1);
+      let hour = parseInt(hourStr);
+      const minute = parseInt(minuteStr);
+      if (period.toLowerCase() === 'pm' && hour !== 12) hour += 12;
+      if (period.toLowerCase() === 'am' && hour === 12) hour = 0;
 
-        if (currentTime < appointmentTime) {
-          return res.status(400).json({
-            message: 'Cannot start treatment before scheduled appointment time',
-          });
-        }
+      const appointmentTime = new Date(appointment.date); // e.g. 2025-07-02T00:00:00.000Z
+      appointmentTime.setHours(hour, minute, 0, 0); // Apply correct time
+
+      // Get current time in IST
+      const currentTime = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+
+      if (currentTime < appointmentTime) {
+        return res.status(400).json({
+          message: 'Cannot start treatment before scheduled appointment time',
+        });
       }
+    }
+
 
 
     if (status === 'Completed') {
