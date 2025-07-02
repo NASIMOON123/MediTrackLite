@@ -33,14 +33,15 @@ const DoctorProfile = ({ user }) => {
         setProfileData(data);
         setFormState((prevState) => ({
           ...prevState,
-          specialization: data.specialization || '',
-          experience: data.experience || '',
-          bio: data.bio || '',
-          timings: data.timings || '',
+          specialization: data.specialization ?? '',
+          experience: data.experience ?? '',
+          bio: data.bio ?? '',
+          timings: data.timings ?? '',
           isAvailable: data.isAvailable ?? true,
           onLeave: data.onLeave ?? false,
-          phone: data.phone || '',
+          phone: data.phone ?? '',
         }));
+
         setPreviewImage(data.imageUrl);
       } catch (err) {
         console.error('Failed to fetch profile:', err);
@@ -81,16 +82,17 @@ const DoctorProfile = ({ user }) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      const updatedProfile = {
-        specialization: formState.specialization || profileData.specialization,
-        experience: formState.experience || profileData.experience,
-        bio: formState.bio || profileData.bio,
-        phone: formState.phone || profileData.phone,
+     const updatedProfile = {
+        specialization: formState.specialization ?? profileData.specialization,
+        experience: formState.experience ?? profileData.experience,
+        bio: formState.bio ?? profileData.bio,
+        phone: formState.phone ?? profileData.phone,
         isAvailable: formState.isAvailable ?? profileData.isAvailable,
         onLeave: formState.onLeave ?? profileData.onLeave,
-        timings: formState.timings || profileData.timings,
-        imageUrl: formState.image || profileData.imageUrl,
+        timings: formState.timings ?? profileData.timings,
+        imageUrl: formState.image ?? profileData.imageUrl,
       };
+
 
       const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/doctors/profile/me`, {
         method: 'PUT',
