@@ -119,6 +119,19 @@
 - Ratings overview
 
 ---
+## 🚀 Future Enhancements
+
+Here are some features we plan to add in the future:
+
+- ✅ Real payment gateway integration (e.g., Razorpay/Stripe)
+- 📝 Email/SMS notifications for appointment updates
+- 📱 Mobile app version using React Native or Flutter
+- 🩺 Doctor availability calendar with drag/drop slots
+- 🧾 Enhanced prescription system with PDF and QR code
+- 🌐 Multilingual support for regional users
+- 🧠 AI integration for symptom checking (future scope)
+
+--
 
 ## 🛠️ Tech Stack
 
