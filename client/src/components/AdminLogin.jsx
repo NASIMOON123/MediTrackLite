@@ -28,13 +28,13 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="admin-login-outer">
-      <div className="admin-login-wrapper">
-        <div className="admin-login-image">
+    <div className="admin-login-outer theme-card">
+      <div className="admin-login-wrapper theme-card">
+        <div className="admin-login-image theme-card">
           <img src="https://static.vecteezy.com/system/resources/previews/020/101/791/non_2x/admin-login-blue-gradient-concept-icon-administrator-account-learning-management-system-access-abstract-idea-thin-line-illustration-isolated-outline-drawing-vector.jpg" alt="Admin Login" />
         </div>
-        <div className="admin-login-form-wrapper">
-          <form onSubmit={handleLogin} className="f-container">
+        <div className="admin-login-form-wrapper theme-card">
+          <form onSubmit={handleLogin} className="f-container theme-card">
             <h2>Admin Login</h2>
             <label>Email:</label>
             <input

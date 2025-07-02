@@ -25,7 +25,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div style={{
+    <div className="theme-card" style={{
       minHeight: '100vh',
       backgroundColor: '#f4f6f8',
       display: 'flex',
@@ -33,7 +33,7 @@ const ForgotPassword = () => {
       alignItems: 'center',
       padding: '20px'
     }}>
-      <div style={{
+      <div className="theme-card" style={{
         backgroundColor: '#ffffff',
         padding: '30px',
         borderRadius: '12px',

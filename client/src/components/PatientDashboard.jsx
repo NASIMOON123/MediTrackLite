@@ -11,7 +11,7 @@ const PatientDashboard = () => {
 
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container theme-card">
       <PatientNavbar/>
 
       <div className="dashboard-content"  style={{ paddingBottom: "50px" }}>

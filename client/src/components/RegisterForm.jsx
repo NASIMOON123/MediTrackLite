@@ -48,18 +48,18 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="login-outer">
-      <div className="login-wrapper">
-        <div className="login-image">
+    <div className="login-outer theme-card">
+      <div className="login-wrapper theme-card">
+        <div className="login-image theme-card">
           <img
             src="https://img.freepik.com/free-vector/online-doctor-concept_23-2148520389.jpg?uid=R204605876&ga=GA1.1.1445937076.1733657251&semt=ais_hybrid&w=740"
             alt="Register Illustration"
           />
         </div>
 
-        <div className="login-form-wrapper">
-          <form onSubmit={handleSubmit} className="f-container">
-            <h2>Register</h2>
+        <div className="login-form-wrapper theme-card">
+          <form onSubmit={handleSubmit} className="f-container theme-card">
+            <h2 className="text-adaptive">Register</h2>
 
             <label>Name:</label>
             <input type="text" name="name" value={formData.name} onChange={handleChange} required />

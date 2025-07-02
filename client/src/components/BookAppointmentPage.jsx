@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -43,38 +44,6 @@ const BookAppointmentPage = () => {
   const isSlotBooked = (slot) =>
     selectedDate && bookedSlots.includes(`${selectedDate}|${slot}`);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   if(!selectedDate){
-  //     toast.error('Please select a date for the appointment.');
-  //     return;
-  //   }
-  //   if(!selectedTime){
-  //     toast.error('Please select a Time slot.');
-  //     return;
-  //   }
-  //   try {
-  //     const storedUser = JSON.parse(localStorage.getItem('user'));
-  //     const payload = {
-  //       doctorId: doctor._id,
-  //       doctorName: doctor.name,
-  //       patientId: storedUser._id,
-  //       patientName: storedUser.name,
-  //       email: storedUser.email,
-  //       date: selectedDate,
-  //       time: selectedTime,
-  //       ...formData
-  //     };
-  //     await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/appointments`, payload, {
-  //       headers: { Authorization: `Bearer ${storedUser}` }
-  //     });
-  //     toast.success("Appointment booked!");
-  //     navigate('/patient-dashboard');
-  //   } catch (err) {
-  //     toast.error(err.response?.data?.msg || "Booking failed");
-  //   }
-  // };
   const handleSubmit = (e) => {
   e.preventDefault();
 
@@ -108,27 +77,27 @@ const BookAppointmentPage = () => {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="book-appointment-page">
-      <div className="appointment-layout">
-        <div className="left-panel">
+    <div className="book-appointment-page theme-card">
+      <div className="appointment-layout theme-card">
+        <div className="left-panel theme-card">
           <button onClick={() => navigate('/patient-dashboard/doctors')} className="back-to-doctors-btn">
             ← Back to Doctors
           </button>
           {doctor && (
-            <div className="doctor-profile-section">
+            <div className="doctor-profile-section theme-card">
               <img src={doctor.imageUrl} alt="Doctor" className="doctor-profile-image" />
-              <div className="doctor-info">
-                <h2>Dr. {doctor.name} <span className="verified">✔</span></h2>
-                <p>{doctor.degree} • {doctor.specialization}</p>
-                <p><strong>About:</strong> {doctor.bio}</p>
-                <p className="fee">Fee: ₹400-₹700</p>
+              <div className="doctor-info ">
+                <h2 >Dr. {doctor.name} <span className="verified">✔</span></h2>
+                <p className="text-adaptive">{doctor.degree} • {doctor.specialization}</p>
+                <p className="text-adaptive"><strong>About:</strong> {doctor.bio}</p>
+                <p className="fee text-adaptive">Fee: ₹400-₹700</p>
               </div>
             </div>
           )}
         </div>
 
-        <div className="right-panel">
-          <div className="booking-section">
+        <div className="right-panel theme-card">
+          <div className="booking-section theme-card">
             <h3>Select Date</h3>
             <input
               type="date"
@@ -140,9 +109,8 @@ const BookAppointmentPage = () => {
 
             <h3>Select Time Slot</h3>
             <div className="slots-container">
-  
-
-            {timeSlots.map(slot => {
+             
+              {timeSlots.map(slot => {
               const [hourStr, minuteStr] = slot.split(/[: ]/);
               let slotHour = parseInt(hourStr);
               let slotMin = parseInt(minuteStr);
@@ -168,13 +136,12 @@ const BookAppointmentPage = () => {
               );
             })}
 
-
             </div>
 
             <form onSubmit={handleSubmit} className="appointment-form">
               <h3>Appointment Details</h3>
 
-              <label>Symptoms / Reason</label>
+              <label className="text-adaptive">Symptoms / Reason</label>
               <textarea
                 name="symptoms"
                 value={formData.symptoms}
@@ -182,7 +149,7 @@ const BookAppointmentPage = () => {
                 required
               />
 
-              <label>Phone</label>
+              <label className="text-adaptive">Phone</label>
               <input
                 type="tel"
                 name="phone"
@@ -192,7 +159,7 @@ const BookAppointmentPage = () => {
                 required
               />
 
-              <label>Gender</label>
+              <label className="text-adaptive">Gender</label>
               <select
                 name="gender"
                 value={formData.gender}

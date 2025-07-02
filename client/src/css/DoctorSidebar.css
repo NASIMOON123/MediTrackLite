@@ -1,7 +1,19 @@
 /* Base sidebar */
+/* .ds-sidebar {
+  width: 250px;
+  background-color: var(--ds-sidebar-bg);
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 60px;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+} */
 .ds-sidebar {
   width: 250px;
-  background-color: #4a00e0;
+  background-color: var(--ds-sidebar-bg)!important; 
   color: white;
   height: 100vh;
   position: fixed;

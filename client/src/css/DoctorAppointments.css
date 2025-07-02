@@ -2,8 +2,9 @@
   padding: 30px;
   max-width: 1300px;
   margin: auto;
-  background: linear-gradient(to bottom right, #f0f4ff, #ffffff);
+  /* background: linear-gradient(to bottom right, #f0f4ff, #ffffff); */
   font-family: 'Segoe UI', sans-serif;
+   border-radius: 25px;
 }
 
 .title {

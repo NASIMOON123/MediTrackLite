@@ -95,7 +95,7 @@ const Chatbot = () => {
   return (
     <div className="chatbot-container">
       {open ? (
-        <div className="chatbot">
+        <div className="chatbot theme-card">
           <div className="chat-header" onClick={() => setOpen(false)}>
             MediBot 🤖
             <button
@@ -103,7 +103,7 @@ const Chatbot = () => {
               e.stopPropagation();
               setFaqDrawerOpen((prev) => !prev);
             }}
-            className="faq-toggle"
+            className="faq-toggle theme-card"
           >
             {faqDrawerOpen ? '❌ Close FAQ' : '📚 FAQs'}
           </button>
@@ -111,7 +111,7 @@ const Chatbot = () => {
           </div>
 
           {faqDrawerOpen && (
-              <div className="faq-drawer">
+              <div className="faq-drawer theme-card">
                 <input
                   type="text"
                   placeholder="Search FAQs..."
@@ -145,7 +145,7 @@ const Chatbot = () => {
                   <div className="faq-categories">
                     {faqs.map((cat, idx) => (
                       <div key={idx} className="faq-category">
-                        <h4>{cat.category}</h4>
+                        <h4 className='text-adaptive'>{cat.category}</h4>
                         <ul>
                           {cat.qa.map((q, i) => (
                             <li
@@ -168,13 +168,13 @@ const Chatbot = () => {
             )}
 
 
-          <div className="chat-body">
+          <div className="chat-body theme-card">
             {messages.map((msg, i) => (
               <div key={i} className={`chat-message ${msg.sender}`}>{msg.text}</div>
             ))}
           </div>
 
-          <div className="chat-footer">
+          <div className="chat-footer theme-card">
             <div className="chat-input-bar">
               <input
                 type="text"

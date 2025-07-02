@@ -1,5 +1,5 @@
 .patient-sidebar {
-  background: linear-gradient(to bottom right, #5b21b6, #7c3aed);
+  background-color: var(--ds-sidebar-bg)!important;
   color: white;
   width: 250px;
   min-height: 100vh;
@@ -71,7 +71,7 @@
 }
 
 .sidebar-link.active {
-  background-color: #9333ea;
+  background-color: var(--active-bg);
   color: white;
 }
 

@@ -55,8 +55,8 @@ const DoctorFeedbackSummary = () => {
     return <p className="text-center mt-6 text-purple-700 font-medium">Loading feedback summary...</p>;
 
   return (
-    <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-3xl mx-auto mt-6 transition-all duration-300">
-      <h2 className="text-3xl font-bold text-indigo-800 mb-4 text-center">
+    <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-3xl mx-auto mt-6 transition-all duration-300 theme-card">
+      <h2 className="text-3xl font-bold text-indigo-800 mb-4 text-center text-adaptive">
         🩺 Doctor Feedback Summary
       </h2>
 

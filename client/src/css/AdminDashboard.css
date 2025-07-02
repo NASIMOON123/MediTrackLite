@@ -20,8 +20,43 @@
   color: #3498db;
   cursor: pointer;
 }
-
+/* .admin-sidebar {
+  width: 220px;
+  background-color: #3498db;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+} */
 .admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 220px; /* or your existing width */
+  background-color: var(--admin-sidebar-bg); /* Use your sidebar background */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+
+.admin-sidebar h2 {
+  margin-bottom: 1rem;
+}
+
+.admin-sidebar button {
+  margin-bottom: 0.5rem;
+}
+
+
+/* .admin-sidebar {
   width: 220px;
   background-color: #3498db;
   color: white;
@@ -48,7 +83,7 @@
   font-weight: 600;
   text-align: left;
   cursor: pointer;
-}
+} */
 
 .admin-sidebar button:hover {
   background-color: #2980b9;
@@ -82,9 +117,17 @@
 }
 
 .admin-dashboard-content {
-  flex: 1;
-  padding: 30px;
+  margin-left: 220px; 
+  width: calc(100% - 220px);/* Match the sidebar width */
+  padding: 2rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
 }
+
+
 
 .doctor-table {
   background: white;

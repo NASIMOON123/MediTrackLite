@@ -4,6 +4,7 @@ import {
   User, BarChart, MessageSquare, ClipboardList, CheckCircle, Menu,
 } from 'lucide-react';
 import '../css/DoctorSidebar.css';
+import ThemeToggle from "./ThemeToggle.jsx";
 
 const DoctorSidebar = () => {
   const navigate = useNavigate();
@@ -52,6 +53,9 @@ const DoctorSidebar = () => {
             </NavLink>
           ))}
         </nav>
+        <div className="theme-toggle-wrapper mt-3 mb-3">
+          <ThemeToggle />
+        </div>
         <div className="ds-sidebar-footer">
           <button className="ds-logout-button" onClick={handleLogout}>Logout</button>
         </div>

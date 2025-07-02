@@ -9,6 +9,7 @@ import {
   LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer,
   PieChart, Pie, Cell
 } from 'recharts';
+import ThemeToggle from "./ThemeToggle.jsx";
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28EF5'];
 
@@ -143,9 +144,9 @@ const AdminDashboard = () => {
   };
 
   const renderTable = (doctorList) => (
-  <div className="responsive-table">
+  <div className="responsive-table theme-card">
     <table>
-      <thead>
+      <thead className="text-adaptive">
         <tr>
           <th>Name</th>
           <th>Specialization</th>
@@ -157,7 +158,7 @@ const AdminDashboard = () => {
       <tbody>
         {doctorList.map((doctor) => (
           <tr key={doctor._id}>
-            <td data-label="Name">{doctor.name}</td>
+            <td data-label="Name" className="text-adaptive">{doctor.name}</td>
             <td data-label="Specialization">{doctor.specialization || 'N/A'}</td>
             <td data-label="Email">{doctor.email}</td>
             <td data-label="Status">
@@ -188,37 +189,37 @@ const AdminDashboard = () => {
     if (!stats) return <p>Loading analytics...</p>;
 
     return (
-      <div className="analytics-container">
-        <div className="stats-cards">
-          <div className="card">
-            <h3>Total Patients</h3>
-            <p>{stats.totalPatients}</p>
+      <div className="analytics-container theme-card">
+        <div className="stats-cards theme-adaptive">
+          <div className="card grey-card">
+            <h3 className="text-adaptive">Total Patients</h3>
+            <p className="text-adaptive">{stats.totalPatients}</p>
           </div>
-          <div className="card">
-            <h3>Total Doctors</h3>
-            <p>{stats.totalDoctors}</p>
+          <div className="card grey-card">
+            <h3 className="text-adaptive">Total Doctors</h3>
+            <p className="text-adaptive">{stats.totalDoctors}</p>
           </div>
-          <div className="card">
-            <h3>Total Appointments</h3>
-            <p>{stats.totalAppointments}</p>
+          <div className="card grey-card">
+            <h3 className="text-adaptive">Total Appointments</h3>
+            <p className="text-adaptive">{stats.totalAppointments}</p>
           </div>
-          <div className="card">
-  <h3>Approved Doctors</h3>
-  <p>{stats.approvedDoctors}</p>
+          <div className="card grey-card">
+  <h3 className="text-adaptive">Approved Doctors</h3>
+  <p className="text-adaptive" >{stats.approvedDoctors}</p>
 </div>
-<div className="card">
-  <h3>Not Approved Doctors</h3>
-  <p>{stats.notApprovedDoctors}</p>
+<div className="card grey-card">
+  <h3 className="text-adaptive">Not Approved Doctors</h3>
+  <p className="text-adaptive">{stats.notApprovedDoctors}</p>
 </div>
-          <div className="card">
-            <h3>Average Rating</h3>
-            <p>{stats.avgRating.toFixed(1)} ★</p>
+          <div className="card grey-card">
+            <h3 className="text-adaptive">Average Rating</h3>
+            <p className="text-adaptive">{stats.avgRating.toFixed(1)} ★</p>
           </div>
         </div>
 
-        <div className="charts-row">
-          <div className="chart-container">
-            <h4>Appointments Over Time</h4>
+        <div className="charts-row theme-card">
+          <div className="chart-container grey-card">
+            <h4 className="text-adaptive">Appointments Over Time</h4>
             <ResponsiveContainer width="100%" height={200}>
               <LineChart data={appointmentsOverTime}>
                 <XAxis dataKey="date" />
@@ -230,8 +231,8 @@ const AdminDashboard = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="chart-container">
-            <h4>Doctor Specializations</h4>
+          <div className="chart-container grey-card">
+            <h4 className="text-adaptive">Doctor Specializations</h4>
             <ResponsiveContainer width="100%" height={200}>
               <PieChart>
                 <Pie
@@ -258,22 +259,22 @@ const AdminDashboard = () => {
   };
 
   const renderRequests = () => (
-    <div className="container mt-3">
-      <h3 className="mb-4">Requested Feedback Deletions</h3>
+    <div className="container mt-3 theme-card">
+      <h3 className="mb-4 text-adaptive">Requested Feedback Deletions</h3>
       {feedbackRequests.length === 0 ? (
-        <p className="text-muted">No deletion requests.</p>
+        <p className="text-muted text-adaptive">No deletion requests.</p>
       ) : (
         <div className="row">
           {feedbackRequests.map((fb, index) => (
             <div key={index} className="col-md-6 mb-3">
-              <div className="card shadow-sm h-100">
-                <div className="card-body">
+              <div className="card shadow-sm h-100 grey-card">
+                <div className="card-body grey-card">
                   <h5 className="card-title mb-2 text-primary">
                     {fb.doctorId?.name || 'Unknown Doctor'}
                   </h5>
-                  <h6 className="card-subtitle mb-2 text-muted">Patient: {fb.patientId?.name || 'Unknown'}</h6>
-                  <p className="fst-italic">"{fb.comment}"</p>
-                  <p className="text-muted">{new Date(fb.createdAt).toLocaleString()}</p>
+                  <h6 className="card-subtitle mb-2 text-muted text-adaptive">Patient: {fb.patientId?.name || 'Unknown'}</h6>
+                  <p className="fst-italic text-adaptive">"{fb.comment}"</p>
+                  <p className="text-muted text-adaptive">{new Date(fb.createdAt).toLocaleString()}</p>
                   <button
                     className="btn btn-danger btn-sm mt-2"
                     onClick={() => handleDeleteFeedback(fb._id)}
@@ -315,20 +316,20 @@ const renderFeedback = () => {
   }
 
   return (
-    <div className="container mt-3">
-      <h3 className="mb-4">All Feedbacks </h3>
+    <div className="container mt-3 theme-card">
+      <h3 className="mb-4 text-adaptive">All Feedbacks </h3>
       <div className="row">
         {allFeedbacks.map((fb, index) => (
           <div key={index} className="col-md-6 mb-3">
-            <div className="card shadow-sm h-100">
-              <div className="card-body">
+            <div className="card shadow-sm h-100 grey-card" >
+              <div className="card-body grey-card">
                 {/* Doctor Info */}
                 <h5 className="card-title mb-2 text-primary">
-                  {fb.doctorName} <small className="text-muted">({fb.specialization})</small>
+                  {fb.doctorName} <small className="text-muted text-adaptive">({fb.specialization})</small>
                 </h5>
 
                 {/* Patient Info */}
-                <h6 className="card-subtitle mb-2 text-muted">Patient: {fb.patientName}</h6>
+                <h6 className="card-subtitle mb-2 text-muted text-adaptive">Patient: {fb.patientName}</h6>
 
                 {/* Rating Stars */}
                 <div className="mb-2">
@@ -348,7 +349,7 @@ const renderFeedback = () => {
                 {/* Comment only if exists */}
                 {fb.comment && fb.comment.trim() !== '' && (
                   <p
-                    className="card-text fst-italic text-dark"
+                    className="card-text fst-italic text-dark text-adaptive"
                     style={{ fontSize: '0.95rem' }}
                   >
                     "{fb.comment}"
@@ -357,7 +358,7 @@ const renderFeedback = () => {
 
                 {/* Date */}
                 <p
-                  className="text-muted mt-2"
+                  className="text-muted mt-2 text-adaptive"
                   style={{ fontSize: '0.8rem' }}
                 >
                   {new Date(fb.createdAt).toLocaleString()}
@@ -373,7 +374,7 @@ const renderFeedback = () => {
 
 
   return (
-    <div className="admin-dashboard-layout">
+    <div className="admin-dashboard-layout ">
       <div className="mobile-header">
         <FaBars className="menu-icon" onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
       </div>
@@ -385,6 +386,9 @@ const renderFeedback = () => {
         <button className={activeTab === 'analytics' ? 'active-tab' : ''} onClick={() => { setActiveTab('analytics'); setIsSidebarOpen(false); }}>Analytics</button>
         <button className={activeTab === 'feedback' ? 'active-tab' : ''} onClick={() => { setActiveTab('feedback'); setIsSidebarOpen(false); }}>Feedback & Ratings</button>
         <button className={activeTab === 'requests' ? 'active-tab' : ''} onClick={() => { setActiveTab('requests'); setIsSidebarOpen(false); }}>Requests for Deletion</button>
+          <div className="theme-toggle-wrapper mt-3 mb-3">
+          <ThemeToggle />
+          </div>
         <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </div>
 

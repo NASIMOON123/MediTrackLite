@@ -1,0 +1,620 @@
+/* :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --navbar-bg: #0d6efd;
+     
+  }
+  
+  .dark-theme {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --navbar-bg: #1f1f1f;
+     
+  }
+  
+  body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Navbar   .custom-navbar {
+    background-color: var(--navbar-bg) !important;
+    color: var(--text-color) !important;
+  }
+  
+  /* Themed cards and sections 
+  .theme-card,
+  .themed-section {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Override direct black text in dark theme 
+  .dark-theme .text-dark,
+  .dark-theme .text-black,
+  .dark-theme [style*="color: #000"],
+  .dark-theme [style*="color:#000"],
+  .dark-theme [style*="color:#000000"],
+  .dark-theme [style*="color: #000000"] {
+    color: var(--text-color) !important;
+  }
+  
+  /* General adaptive text 
+  .text-adaptive {
+    color: var(--text-color) !important;
+  }
+  
+  /* Inputs 
+  input, textarea, select {
+    background-color: var(--input-bg, #fff);
+    color: var(--text-color);
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 4px;
+    width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .dark-theme input,
+  .dark-theme textarea,
+  .dark-theme select {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
+  
+  /* Optional input styling 
+  .input-adaptive {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid #ccc;
+    padding: 8px;
+    width: 100%;
+    transition: 0.3s;
+  }
+  
+  .input-adaptive::placeholder {
+    color: var(--text-color);
+  }
+  
+  .input-adaptive:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Button styling 
+  .theme-button {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s ease;
+  }
+  
+  .theme-button:hover {
+    opacity: 0.9;
+  }
+  .dark-theme .doctor-card {
+    background-color: #2c2c2c !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  }
+  
+  /* This applies adaptive color to links in all modes 
+a.text-adaptive,
+.text-adaptive a,
+.text-adaptive a:visited,
+a.text-adaptive:visited {
+  color: var(--text-color) !important;
+  text-decoration: none;
+}
+
+/* Optional hover effects 
+a.text-adaptive:hover,
+.text-adaptive a:hover {
+  color: var(--text-color) !important;
+  text-decoration: underline;
+}
+
+.login-form-wrapper {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+
+.profile-container {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .profile-info {
+    margin: 10px 0;
+    font-size: 16px;
+    color: var(--text-color); /* use text color from theme 
+  }
+  
+  .profile-label {
+    font-weight: bold;
+    color: var(--text-color); /* white in dark mode 
+  }
+  
+  .doctor-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--text-color);
+  }
+  
+  h2 {
+    margin-top: 15px;
+    color: var(--text-color); /* white in dark mode 
+  }
+  
+  .main-content {
+    padding: 40px 0;
+    background-color: var(--bg-color); /* whole section background 
+    color: var(--text-color);
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+  }
+  h2.theme-adaptive {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+ 
+  
+  .theme-card {
+    background-color: var(--card-bg, #ffffff);
+    color: var(--text-color, #000000);
+  }
+  
+  .theme-adaptive {
+    color: var(--text-color) !important;
+  }
+  
+  .view-button {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: var(--text-color);  /* dark: white, light: black 
+    color: var(--bg-color);
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .view-button:hover {
+    opacity: 0.9;
+  }
+
+  
+  /* ---------- STARS ---------- 
+  .dark-theme .stars .star {
+    color: #555;
+  }
+  .dark-theme .stars .star.filled {
+    color: gold;
+  }
+  
+  /* ---------- TEXT OVERRIDES ---------- 
+  .dark-theme .text-danger {
+    color: #ef9a9a !important;
+  }
+  
+  .dark-theme .text-success {
+    color: #81c784 !important;
+  }
+  .dark-theme .nav-tabs .nav-link {
+    color: #b0bec5;
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+  }
+  .dark-theme .nav-tabs .nav-link.active {
+    background-color: #455a64;
+    color: #ffffff;
+    border-bottom: 2px solid #90caf9;
+  } */
+  /* themes.css 
+
+.dark-theme {
+  background-color: black !important;
+  color: white !important;
+}
+
+.dark-theme .card {
+  background-color: #2c2c2c !important;
+  color: white !important;
+  border: none;
+}
+
+.dark-theme .card-body {
+  background-color: #2c2c2c !important;
+  color: white !important;
+}
+
+.dark-theme .nav-tabs .nav-link {
+  background-color: #444 !important;
+  color: white !important;
+  border: none;
+  margin: 2px;
+}
+
+.dark-theme .nav-tabs .nav-link.active {
+  background-color: #007bff !important;
+  color: white !important;
+}
+
+.dark-theme .btn {
+  color: white !important;
+}
+
+.dark-theme .btn-outline-primary {
+  border-color: white !important;
+  color: white !important;
+}
+
+.dark-theme .btn-outline-success {
+  border-color: white !important;
+  color: white !important;
+}
+
+.dark-theme .btn-info {
+  background-color: #17a2b8 !important;
+  color: white !important;
+}
+
+.dark-theme .btn-outline-danger {
+  border-color: red !important;
+  color: red !important;
+}
+
+.dark-theme .bg-light {
+  background-color: #333 !important;
+  color: white !important;
+}
+
+.dark-theme .feedback-box {
+  background-color: #3a3a3a !important;
+  color: white !important;
+  border-radius: 8px;
+  padding: 1rem;
+}
+/* Dark theme input & form styles 
+.dark-theme input,
+.dark-theme textarea,
+.dark-theme select {
+  background-color: #2c2c2c !important;
+  color: white !important;
+  border: 1px solid #555 !important;
+}
+
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder {
+  color: #aaa !important;
+}
+
+.dark-theme .form-container, 
+.dark-theme .appointment-form-wrapper {
+  background-color: #1e1e1e !important;
+  color: white !important;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* Apply styles only when body has 'dark-theme' class 
+.dark-theme .profile-details {
+  background-color: #1e1e2f;
+  color: #0e0d0d;
+}
+
+.dark-theme .profile-details p {
+  color: #070606;
+}
+
+.dark-theme .profile-details strong {
+  color: #ffcc00; /* Highlighted label text 
+}
+/* .dark-theme .doctor-container {
+  background-color: #2e2e3a !important;
+  color: #fff !important;
+} 
+/* 🌙 Dark theme styles 
+.dark-theme .chat-body.theme-card .chat-message.bot {
+  background-color: #444;
+  color: #fff;
+}
+
+.dark-theme .chat-body.theme-card .chat-message.user {
+  background-color: #2e7d32; /* greenish for contrast 
+  color: #fff;
+}
+.dark-theme .doctor-container {
+  background-color: #121212; /* dark background 
+  color: #ffffff;
+} */
+
+/* -------------------- VARIABLES -------------------- */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --navbar-bg: #0d6efd;
+  --card-bg: #f8f9fa;
+  --admin-sidebar-bg: #3498db;
+  --ds-sidebar-bg:#4a00e0;
+  --appointment-bg:#f5f5fd;
+  --active-bg:#9333ea;
+  
+}
+
+.dark-theme {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --navbar-bg: #1f1f1f;
+  --card-bg: #2c2c2c;
+  --admin-sidebar-bg: #100d3a;
+  --ds-sidebar-bg: #100d3a;
+  --appointment-bg:#86858f;
+  --active-bg:#340c58;
+}
+
+/* -------------------- BASE STYLES -------------------- */
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-content {
+  padding: 40px 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+/* -------------------- NAVBAR -------------------- */
+.custom-navbar {
+  background-color: var(--navbar-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* -------------------- CARDS -------------------- */
+.theme-card,
+.themed-section,
+.card,
+.card-body,
+.doctor-container,
+.profile-container {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  transition: 0.3s ease;
+  border-radius: 10px;
+  padding: 1rem;
+}
+.dark-theme .doctor-card {
+  background-color: #2c2c2c !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+/* -------------------- TEXT -------------------- */
+.text-adaptive {
+  color: var(--text-color) !important;
+}
+
+h2,
+h2.theme-adaptive {
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.dark-theme .text-danger {
+  color: #ef9a9a !important;
+}
+
+.dark-theme .text-success {
+  color: #81c784 !important;
+}
+
+.dark-theme .stars .star {
+  color: #555;
+}
+
+.dark-theme .stars .star.filled {
+  color: gold;
+}
+
+/* -------------------- BUTTONS -------------------- */
+.theme-button,
+.view-button,
+.btn {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.theme-button:hover,
+.view-button:hover {
+  opacity: 0.9;
+}
+
+.btn-outline-primary,
+.btn-outline-success,
+.btn-outline-danger {
+  border: 1px solid var(--text-color) !important;
+  color: var(--text-color) !important;
+  background-color: transparent;
+}
+
+.btn-info {
+  background-color: #17a2b8 !important;
+  color: white !important;
+}
+
+/* -------------------- INPUTS & FORMS -------------------- */
+input,
+textarea,
+select {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #888;
+}
+
+.dark-theme input,
+.dark-theme textarea,
+.dark-theme select {
+  background-color: #2c2c2c;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder {
+  color: #aaa;
+}
+
+.form-container,
+.appointment-form-wrapper {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* -------------------- PROFILE -------------------- */
+.profile-container {
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+  margin: 10px 0;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.profile-label {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.doctor-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--text-color);
+}
+
+/* -------------------- NAV TABS -------------------- */
+.nav-tabs .nav-link {
+  color: var(--text-color);
+  background-color: var(--card-bg);
+  border: 1px solid #444;
+  margin: 2px;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #007bff !important;
+  color: white !important;
+  border-bottom: 2px solid #90caf9;
+}
+
+/* -------------------- CHATBOT -------------------- */
+.dark-theme .chat-body.theme-card .chat-message.bot {
+  background-color: #444;
+  color: #fff;
+}
+
+.dark-theme .chat-body.theme-card .chat-message.user {
+  background-color: #2e7d32; /* greenish for contrast */
+  color: #fff;
+}
+
+/* -------------------- FEEDBACK BOX -------------------- */
+.feedback-box {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* -------------------- LINKS -------------------- */
+/* a.text-adaptive,
+.text-adaptive a,
+.text-adaptive a:visited {
+  color: var(--text-color) !important;
+  text-decoration: none;
+} */
+
+/* a.text-adaptive:hover,
+.text-adaptive a:hover {
+  text-decoration: underline;
+} */
+
+
+.admin-dashboard-layout {
+  background-color: var(--bg-color);  /* not white or #fff */
+  color: var(--text-color);
+  transition: 0.3s;
+  min-height: 100vh;
+}
+.dark-theme .grey-card {
+  background-color: #444 !important;
+  color: #fff !important;
+}
+.admin-dashboard-content,
+.main-content {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  padding: 2rem;
+}
+/* .admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 1rem;
+  background-color: var(--navbar-bg); /* or your chosen sidebar color 
+} */
+
+.appointment-card,
+.doctor-container {
+  background-color: var(--appointment-bg) !important;
+  color: var(--text-color) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+   border-radius: 25px;
+}
+

@@ -171,9 +171,9 @@ const PatientAppointments = () => {
   };
 
   return (
-    <div className="patient-appointment-wrapper">
-      <div className="container-fluid">
-        <h2 className="mb-4 text-center">My Appointments</h2>
+    <div className="patient-appointment-wrapper theme-card">
+      <div className="container-fluid theme-card">
+        <h2 className="mb-4 text-center text-adaptive">My Appointments</h2>
 
         <div className="mb-4 d-flex justify-content-center">
           <ul className="nav nav-tabs flex-wrap justify-content-center">
@@ -202,26 +202,17 @@ const PatientAppointments = () => {
           <div className="row">
             {filteredAppointments.map((appointment) => (
               <div key={appointment._id} className="col-md-6 mb-4">
-                <div className="card h-100 shadow-sm" style={{ fontSize: '1rem' }}>
-                  <div className="card-body py-2 px-3">
+                <div className="card h-100 shadow-sm grey-card" style={{ fontSize: '1rem' }}>
+                  <div className="card-body py-2 px-3 grey-card">
                     <div style={{ fontSize: '1rem', lineHeight: '1.6' }}>
-                      <strong>Date:</strong> {appointment.date}
-                      <br />
-                      <strong>Time:</strong> {appointment.time}
-                      <br />
-                      <strong>Doctor:</strong>{' '}
-                      {appointment.doctorId.name || appointment.doctorId}
-                      <br />
-                      <strong>Symptom:</strong> {appointment.symptoms || 'N/A'}
-                      <br />
-                      <span
-                        className={`status-label ${appointment.status
-                          .toLowerCase()
-                          .replace(/\s/g, '-')}`}
-                      >
+                      <strong>Date:</strong> {appointment.date}<br />
+                      <strong>Time:</strong> {appointment.time}<br />
+                      <strong>Doctor:</strong> {appointment.doctorId.name || appointment.doctorId}<br />
+                      <strong>Symptom:</strong> {appointment.symptoms || 'N/A'}<br />
+                      <span className={`status-label ${appointment.status.toLowerCase().replace(/\s/g, '-')}`}>
                         {appointment.status}
-                      </span>
-                      <br />
+                      </span><br />
+
                       {appointment.status === 'Completed' && (
                         <div className="mt-3">
                           <button
@@ -251,31 +242,24 @@ const PatientAppointments = () => {
                             </button>
                           ) : (
                             <span className="text-success small">
-                              <br />
-                              You have already submitted feedback.
+                              <br />You have already submitted feedback.
                             </span>
                           )}
 
                           {openPrescriptions[appointment._id] && (
-                            <div className="border rounded p-3 mt-3 bg-light">
-                              <p>
-                                <strong>Doctor's Notes:</strong>{' '}
-                                {appointment.prescription || 'N/A'}
-                              </p>
+                            <div className="border rounded p-3 mt-3 bg-light theme-card">
+                              <p className="text-adaptive"><strong className="text-adaptive">Doctor's Notes:</strong> {appointment.prescription || 'N/A'}</p>
                               {appointment.medicines?.length > 0 && (
                                 <>
                                   <strong>Medicines:</strong>
-                                  {Object.entries(
-                                    groupMedicinesByTiming(appointment.medicines)
-                                  ).map(([timing, meds]) =>
+                                  {Object.entries(groupMedicinesByTiming(appointment.medicines)).map(([timing, meds]) =>
                                     meds.length > 0 ? (
                                       <div key={timing}>
                                         <u>{timing}:</u>
                                         <ul>
                                           {meds.map((med, idx) => (
                                             <li key={idx}>
-                                              <strong>{med.name}</strong> - {med.dosage} (
-                                              {med.frequency})
+                                              <strong>{med.name}</strong> - {med.dosage} ({med.frequency})
                                             </li>
                                           ))}
                                         </ul>
@@ -288,16 +272,20 @@ const PatientAppointments = () => {
                           )}
 
                           {submittedFeedbacks[appointment._id] && (
-                            <div className="feedback-box mt-3">
+                            <div className="feedback-box mt-3 theme-card">
                               <strong>Feedback:</strong>
                               <p className="fst-italic mb-1">
-                                {showFullFeedback[appointment._id]
-                                  ? submittedFeedbacks[appointment._id].comment
-                                  : submittedFeedbacks[appointment._id].comment.slice(0, 100) +
-                                    (submittedFeedbacks[appointment._id].comment.length > 100
-                                      ? '...'
-                                      : '')}
-                              </p>
+                          {submittedFeedbacks[appointment._id]?.comment ? (
+                            showFullFeedback[appointment._id] ? (
+                              submittedFeedbacks[appointment._id].comment
+                            ) : (
+                              submittedFeedbacks[appointment._id].comment.slice(0, 100) +
+                              (submittedFeedbacks[appointment._id].comment.length > 100 ? '...' : '')
+                            )
+                          ) : (
+                            <span className="text-muted">No feedback submitted</span>
+                          )}
+                        </p>
                               {submittedFeedbacks[appointment._id].comment.length > 100 && (
                                 <button
                                   className="btn btn-link p-0"
@@ -308,9 +296,7 @@ const PatientAppointments = () => {
                                     }))
                                   }
                                 >
-                                  {showFullFeedback[appointment._id]
-                                    ? 'Show less'
-                                    : 'Show more'}
+                                  {showFullFeedback[appointment._id] ? 'Show less' : 'Show more'}
                                 </button>
                               )}
                               <div className="stars mb-0">
@@ -337,9 +323,7 @@ const PatientAppointments = () => {
                                   Request Feedback Deletion
                                 </button>
                               ) : (
-                                <p className="text-danger small mt-2">
-                                  Deletion Requested
-                                </p>
+                                <p className="text-danger small mt-2">Deletion Requested</p>
                               )}
                             </div>
                           )}

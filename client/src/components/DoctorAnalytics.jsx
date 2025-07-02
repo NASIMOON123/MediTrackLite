@@ -44,9 +44,9 @@ const DoctorAnalytics = () => {
   }, []);
 
   return (
-    <div className="analytics-page">
+    <div className="analytics-page theme-card">
         <br/>
-      <h2>Doctor Appointments Analytics</h2>
+      <h2 className="text-adaptive">Doctor Appointments Analytics</h2>
       {loading ? (
         <p>Loading analytics...</p>
       ) : (

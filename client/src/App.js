@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import ThemeToggle from './components/ThemeToggle';
 // General Pages & Components
 import HomePage from './components/HomePage';
 import RegisterForm from './components/RegisterForm';
@@ -13,6 +13,7 @@ import PatientProfile from './components/PatientProfile';
 import DoctorsPage from './components/PatientDoctors';
 import PatientDashboard from './components/PatientDashboard';
 import PendingAppointments from './components/PendingAppointments';
+import { useLocation } from 'react-router-dom';
 
 import BookAppointmentPage from './components/BookAppointmentPage';
 import DoctorDashboardLayout from './components/DoctorDashboardLayout';
@@ -32,7 +33,9 @@ import ForgotPassword from "./components/ForgotPassword";
 import VerifyOtp from './components/VerifyOtp';
 import ResetPassword from './components/ResetPassword';
 import Chatbot from './components/Chatbot'; // Make sure path is correct
-import FakePaymentPage from './components/FakePaymentPage';
+
+import PaymentPage from './components/PaymentPage';
+
 
 // Removed ProtectedRoute import
 
@@ -47,9 +50,17 @@ function App() {
     }
   });
 
+  const pathname = window.location.pathname;
+  const isDashboard = pathname.includes('/admin/dashboard') || pathname.includes('/doctor-dashboard/doctor-profile')  || pathname.includes('/doctor-dashboard/doctor-feedback') || pathname.includes('/doctor-dashboard/appointments') || pathname.includes('/doctor-dashboard/my-appointments') || pathname.includes('/doctor-dashboard/analytics') || pathname.includes('/doctor-dashboard/approval-status')|| pathname.includes('/doctor-dashboard') || pathname.includes('/patient-dashboard/doctors')|| pathname.includes('/patient-dashboard/appointments')|| pathname.includes('/patient-dashboard');
+  
+
   return (
     <Router>
       <ToastContainer position="top-center" autoClose={3000} />
+
+    {!isDashboard && <ThemeToggle />}
+
+  
 
       <Chatbot />
 
@@ -81,7 +92,10 @@ function App() {
         <Route path="profile" element={<PatientProfile user={user} />} />
         <Route path="appointments" element={<PatientAppointments user={user} />} />
         <Route path="doctors" element={<PatientDoctors user={user} />} />
-        <Route path="payment" element={<FakePaymentPage />} />
+
+        <Route path="payment" element={<PaymentPage />} />
+      
+
       </Route>
 
         {/* Doctor Routes */}

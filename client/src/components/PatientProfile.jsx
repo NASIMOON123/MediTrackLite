@@ -13,8 +13,8 @@ const PatientProfile = ({ user }) => {
   return (
    <div>
   
-  <div className="main-content">
-  <div className="profile-container">
+  <div className="main-content theme-card">
+  <div className="profile-container theme-card">
     <div className="image-wrapper">
       <img
         src="https://www.w3schools.com/howto/img_avatar.png"
@@ -23,15 +23,15 @@ const PatientProfile = ({ user }) => {
       />
     </div>
 
-    <h2>Patient Profile</h2>
-    <p className="profile-info">
-      <span className="profile-label">Name:</span> {user.name || 'N/A'}
+    <h2 className="text-adaptive">Patient Profile</h2>
+    <p className="profile-info text-adaptive">
+      <span className="profile-label text-adaptive">Name:</span> {user.name || 'N/A'}
     </p>
-    <p className="profile-info">
-      <span className="profile-label">Email:</span> {user.email || 'N/A'}
+    <p className="profile-info text-adaptive">
+      <span className="profile-label text-adaptive">Email:</span> {user.email || 'N/A'}
     </p>
-    <p className="profile-info">
-      <span className="profile-label">Role:</span> Patient
+    <p className="profile-info text-adaptive">
+      <span className="profile-label text-adaptive">Role:</span> Patient
     </p>
   </div>
 

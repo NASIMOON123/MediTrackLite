@@ -29,8 +29,8 @@ const PatientDoctors = () => {
   });
 
   return (
-    <div className="doctor-list-container">
-      <h2>Available Doctors</h2>
+    <div className="doctor-list-container theme-card">
+      <h2 className="theme-adaptive">Available Doctors</h2>
 
       <div className="filters-container">
         <input
@@ -38,13 +38,13 @@ const PatientDoctors = () => {
           placeholder="Search by name or specialization"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-bar"
+          className="search-bar input-adaptive"
         />
 
         <select
           value={selectedSpec}
           onChange={(e) => setSelectedSpec(e.target.value)}
-          className="search-bar"
+          className="search-bar input-adaptive"
         >
           <option value="">All Specializations</option>
           {specializations.map((spec, index) => (
@@ -59,7 +59,7 @@ const PatientDoctors = () => {
             <DoctorCard key={doc._id} doctor={doc} />
           ))
         ) : (
-          <p>No doctors found matching your search criteria.</p>
+          <p className="theme-adaptive">No doctors found matching your search criteria.</p>
         )}
       </div>
     </div>

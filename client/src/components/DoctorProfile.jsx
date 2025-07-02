@@ -31,14 +31,20 @@ const DoctorProfile = ({ user }) => {
         });
         const data = await res.json();
         setProfileData(data);
+      
         setFormState((prevState) => ({
           ...prevState,
           specialization: data.specialization ?? '',
           experience: data.experience ?? '',
           bio: data.bio ?? '',
           timings: data.timings ?? '',
+          specialization: data.specialization ?? '',
+          experience: data.experience ?? '',
+          bio: data.bio ?? '',
+          timings: data.timings ?? '',
           isAvailable: data.isAvailable ?? true,
           onLeave: data.onLeave ?? false,
+          phone: data.phone ?? '',
           phone: data.phone ?? '',
         }));
 
@@ -82,13 +88,16 @@ const DoctorProfile = ({ user }) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-     const updatedProfile = {
+     
+      const updatedProfile = {
         specialization: formState.specialization ?? profileData.specialization,
         experience: formState.experience ?? profileData.experience,
         bio: formState.bio ?? profileData.bio,
         phone: formState.phone ?? profileData.phone,
         isAvailable: formState.isAvailable ?? profileData.isAvailable,
         onLeave: formState.onLeave ?? profileData.onLeave,
+        timings: formState.timings ?? profileData.timings,
+        imageUrl: formState.image ?? profileData.imageUrl,
         timings: formState.timings ?? profileData.timings,
         imageUrl: formState.image ?? profileData.imageUrl,
       };
@@ -133,7 +142,7 @@ const DoctorProfile = ({ user }) => {
   }
 
   return (
-    <div className="profile-container">
+    <div className="profile-container theme-card">
       <h2>Doctor Profile</h2>
       <p className="profile-info"><strong>Name:</strong> {user.name}</p>
       <p className="profile-info"><strong>Email:</strong> {user.email}</p>
@@ -150,37 +159,38 @@ const DoctorProfile = ({ user }) => {
               />
             </div>
           )}
-          <p><strong>Specialization:</strong> {profileData.specialization}</p>
+         
+          <p ><strong>Specialization:</strong> {profileData.specialization}</p>
           <p><strong>Experience:</strong> {profileData.experience} years</p>
           <p><strong>Phone:</strong> {profileData.phone}</p>
           <p><strong>Bio:</strong> {profileData.bio}</p>
           <p><strong>Timings:</strong> {profileData.timings}</p>
           <p><strong>Available to Work:</strong> {profileData.isAvailable ? 'Yes' : 'No'}</p>
           <p><strong>On Leave:</strong> {profileData.onLeave ? 'Yes' : 'No'}</p>
-
+        
          <button className="edit-profile-button" onClick={() => setShowForm(true)}>Edit Profile</button>
 
         </div>
       ) : (
-        <div className="edit-form-wrapper">
+        <div className="edit-form-wrapper theme-card">
         <form className="complete-profile-form" onSubmit={handleSubmit}>
           <label>Specialization:</label>
-          <input type="text" name="specialization" value={formState.specialization} onChange={handleChange} required />
+          <input type="text" name="specialization" className="theme-card" value={formState.specialization} onChange={handleChange} required />
 
           <label>Experience (in years):</label>
-          <input type="number" name="experience" value={formState.experience} onChange={handleChange} required />
+          <input type="number" name="experience" className="theme-card " value={formState.experience} onChange={handleChange} required />
 
           <label>Phone Number:</label>
-          <input type="tel" name="phone" value={formState.phone} onChange={handleChange} required />
+          <input type="tel" name="phone" className="theme-card" value={formState.phone} onChange={handleChange} required />
 
           <label>Bio:</label>
-          <textarea name="bio" value={formState.bio} onChange={handleChange} required />
+          <textarea name="bio" className="theme-card" value={formState.bio} onChange={handleChange} required />
 
           <label>Available Timings:</label>
-          <input type="text" name="timings" value={formState.timings} onChange={handleChange} required />
+          <input type="text" name="timings" className="theme-card" value={formState.timings} onChange={handleChange} required />
         
           <label>Upload Profile Picture:</label>
-          <input type="file" accept="image/*" onChange={handleChange} />
+          <input type="file" className="theme-card" accept="image/*" onChange={handleChange} />
         <div className='style-image'>
           {previewImage && <img src={previewImage} alt="Preview" className="preview-image" />}
         </div>

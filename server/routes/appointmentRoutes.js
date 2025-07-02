@@ -154,4 +154,3 @@ router.patch('/status/:id', authMiddleware('doctor'), async (req, res) => {
 router.patch('/update-status/:appointmentId', protect, updateAppointmentStatus);
 
 export default router;
-

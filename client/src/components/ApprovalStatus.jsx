@@ -65,16 +65,16 @@ const ApprovalStatus = () => {
   if (loading) return <p className="text-center mt-10 text-gray-600">Loading...</p>;
 
   return (
-    <div className="flex justify-center items-center p-4 w-75 ml-5 bg-gray-100 min-h-screen status-container">
+    <div className="flex justify-center items-center p-4 w-75 ml-5 bg-gray-100 min-h-screen status-container theme-card">
       {status === 'approved' ? (
-        <div className="approval-card" ref={certificateRef}>
-        <div className="w-full max-w-2xl">
+        <div className="approval-card theme-card" ref={certificateRef}>
+        <div className="w-full max-w-2xl theme-card">
           <div
-            className="bg-white rounded-xl shadow-2xl border-4 border-blue-200 p-8 text-center"
+            className="bg-white rounded-xl shadow-2xl border-4 border-blue-200 p-8 text-center theme-card"
             ref={certificateRef}
           >
             
-            <h1 className="text-3xl font-bold text-blue-900 mb-4">Certificate of Approval</h1>
+            <h1 className="text-3xl font-bold text-blue-900 mb-4 theme-adaptive">Certificate of Approval</h1>
             <p className="text-lg text-gray-700 mb-6">This certifies that</p>
 
             <h2 className="text-2xl font-semibold text-green-700">{doctor?.name}</h2>

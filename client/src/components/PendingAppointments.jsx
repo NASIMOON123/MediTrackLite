@@ -56,9 +56,9 @@ const PendingAppointments = () => {
                 className="card shadow-sm h-100"
                 style={{ width: '340px', borderRadius: '12px' }}
               >
-                <div className="card-body p-3">
-                  <h6 className="fw-bold text-dark mb-2">{appointment.patientName}</h6>
-                  <div className="small text-muted mb-2" style={{ lineHeight: '1.5' }}>
+                <div className="card-body p-3 grey-card">
+                  <h6 className="fw-bold text-dark mb-2 text-adaptive">{appointment.patientName}</h6>
+                  <div className="small text-muted mb-2 text-adaptive" style={{ lineHeight: '1.5' }}>
                     <div><strong>Email:</strong> {appointment.email}</div>
                     <div><strong>Date:</strong> {appointment.date}</div>
                     <div><strong>Time:</strong> {appointment.time}</div>

@@ -42,13 +42,13 @@ const FeedbackModal = ({ show, onClose, appointment, onFeedbackSubmitted }) => {
       centered 
       size="md" 
       backdrop="static" 
-      className="feedback-modal"
+      className="feedback-modal theme-dark "
     >
-      <Modal.Header closeButton className="modal-header-custom">
-        <Modal.Title className="modal-title-custom">Leave Feedback</Modal.Title>
+      <Modal.Header closeButton className="modal-header-custom theme-dark">
+        <Modal.Title className="modal-title-custom ">Leave Feedback</Modal.Title>
       </Modal.Header>
-      <Modal.Body className="modal-body-custom">
-        <Form className="form">
+      <Modal.Body className="modal-body-custom theme-dark theme-card">
+        <Form className="form theme-card theme-card">
           <div className="rating-section">
             <Form.Label className="rating-label">How would you rate your experience?</Form.Label>
             
@@ -81,7 +81,7 @@ const FeedbackModal = ({ show, onClose, appointment, onFeedbackSubmitted }) => {
           </div>
 
           <Form.Group className="comment-section">
-            <Form.Label className="comment-label">Share your thoughts (optional)</Form.Label>
+            <Form.Label className="comment-label text-adaptive">Share your thoughts (optional)</Form.Label>
             <Form.Control
               as="textarea"
               rows={4}
@@ -93,7 +93,7 @@ const FeedbackModal = ({ show, onClose, appointment, onFeedbackSubmitted }) => {
           </Form.Group>
         </Form>
       </Modal.Body>
-      <Modal.Footer className="modal-footer-custom">
+      <Modal.Footer className="modal-footer-custom theme-card roundedbtn">
         <Button variant="outline-custom" onClick={onClose}>
           Cancel
         </Button>

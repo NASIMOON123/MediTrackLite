@@ -33,7 +33,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div style={{
+    <div className="theme-card" style={{
       minHeight: '100vh',
       backgroundColor: '#f0f2f5',
       display: 'flex',
@@ -41,7 +41,7 @@ const ResetPassword = () => {
       alignItems: 'center',
       padding: '20px'
     }}>
-      <div style={{
+      <div className="theme-card" style={{
         backgroundColor: '#ffffff',
         padding: '30px',
         borderRadius: '12px',
@@ -51,7 +51,7 @@ const ResetPassword = () => {
         boxSizing: 'border-box',
         fontFamily: 'Segoe UI, sans-serif'
       }}>
-        <h2 style={{
+        <h2 className="text-adaptive" style={{
           textAlign: 'center',
           marginBottom: '25px',
           color: '#2c3e50'

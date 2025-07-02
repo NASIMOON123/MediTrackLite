@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import '../css/DoctorAppointments.css';
 import { FaTimes } from 'react-icons/fa';
+import '../css/themes.css';
 
 const DoctorAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -124,14 +125,17 @@ const DoctorAppointments = () => {
   };
 
   return (
-    <div className="doctor-container">
-      <h1 className="title">My Appointments</h1>
-      <div className="filters">
+    <div className="appointment-card">
+
+    <div className="doctor-container appointment-card">
+      <h1 className="title appointment-card">My Appointments</h1>
+      <div className="filters appointment-card">
         {['Approved', 'In Progress', 'Completed'].map((status) => (
           <button
             key={status}
-            className={`filter-btn ${statusFilter === status ? 'active' : ''}`}
+            className={`filter-btn  ${statusFilter === status ? 'active' : ''}`}
             onClick={() => setStatusFilter(status)}
+          
           >
             {status} <span className="badge">{counts[status]}</span>
           </button>
@@ -140,17 +144,18 @@ const DoctorAppointments = () => {
 
       {error && <p className="error">{error}</p>}
 
-      <div className="appointments">
+      <div className="appointments ">
         {appointments.length === 0 ? (
           <p className="no-appointments">No {statusFilter.toLowerCase()} appointments.</p>
         ) : (
           appointments.map((app) => (
-            <div key={app._id} className="card">
-              <p><strong>Patient:</strong> {app.patientName}</p>
-              <p><strong>Symptoms:</strong> {app.symptoms}</p>
-              <p><strong>Date:</strong> {app.date}</p>
-              <p><strong>Time:</strong> {app.time}</p>
-              <p><strong>Status:</strong> <span className={`status ${app.status.toLowerCase().replace(' ', '-')}`}>{app.status}</span></p>
+            <div key={app._id} className="card theme-card">
+              <p className="text-adaptive"><strong>Patient:</strong> {app.patientName}</p>
+              <p className="text-adaptive"><strong>Symptoms:</strong> {app.symptoms}</p>
+              <p className="text-adaptive"><strong>Date:</strong> {app.date}</p>
+              <p className="text-adaptive"><strong>Date:</strong> {app.date}</p>
+              <p className="text-adaptive"><strong>Time:</strong> {app.time}</p>
+              <p className="text-adaptive"><strong>Status:</strong> <span className={`status ${app.status.toLowerCase().replace(' ', '-')}`}>{app.status}</span></p>
 
               {statusFilter === 'Approved' && (() => {
                 const appointmentDateTime = new Date(`${app.date} ${app.time}`);
@@ -175,10 +180,10 @@ const DoctorAppointments = () => {
               )}
 
               {editId === app._id && (
-                <div className="prescription-box">
-                  <textarea value={prescription} onChange={(e) => setPrescription(e.target.value)} placeholder="Write prescription..." rows={3} />
+                <div className="prescription-box theme-card">
+                  <textarea value={prescription} onChange={(e) => setPrescription(e.target.value)} className="theme-card" placeholder="Write prescription..." rows={3} />
                   {medicines.map((med, i) => (
-                    <div key={i} className="med-block">
+                    <div key={i} className="med-block theme-card">
                       <input
                         type="text"
                         placeholder="Name"
@@ -196,6 +201,7 @@ const DoctorAppointments = () => {
                       <div className="med-row">
                         <select
                           value={med.frequency}
+                          className="theme-card"
                           onChange={(e) => handleMedicineChange(i, 'frequency', e.target.value)}
                         >
                           <option value="">Freq</option>
@@ -205,6 +211,7 @@ const DoctorAppointments = () => {
                         </select>
                         <select
                           value={med.timing}
+                          className="theme-card"
                           onChange={(e) => handleMedicineChange(i, 'timing', e.target.value)}
                         >
                           <option value="">Timing</option>
@@ -232,8 +239,8 @@ const DoctorAppointments = () => {
                     {visiblePrescriptions[app._id] ? 'Hide Prescription' : 'Show Prescription'}
                   </button>
                   {visiblePrescriptions[app._id] && (
-                    <div className="prescription-show">
-                      <p><strong>Prescription:</strong> {app.prescription}</p>
+                    <div className="prescription-show theme-card">
+                      <p className="text-adaptive"><strong className="text-adaptive">Prescription:</strong> {app.prescription}</p>
                       <ul>
                         {app.medicines?.map((m, i) => (
                           <li key={i}>{m.name} - {m.dosage} ({m.frequency}, {m.timing})</li>
@@ -247,6 +254,7 @@ const DoctorAppointments = () => {
           ))
         )}
       </div>
+    </div>
     </div>
   );
 };

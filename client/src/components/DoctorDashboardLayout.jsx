@@ -11,11 +11,11 @@ const DoctorDashboardLayout = () => {
     <div className="doctor-dashboard-layout">
      <DoctorSidebar />
 
-      <main className="doctor-main">
+      <main className="doctor-main theme-card">
         {isDashboardRoot ? (
-          <div className="welcome-box">
+          <div className="welcome-box theme-card" >
             <h2>Welcome to your Doctor Dashboard</h2>
-            <p>
+            <p classNmae="theme-adaptive">
               You can now manage your profile, appointments, availability, and review patient history.
             </p>
           </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { User, CalendarDays, HeartPulse, LogOut, Menu } from 'lucide-react';
 import '../css/navbar.css';
+import ThemeToggle from './ThemeToggle'; 
 
 const PatientNavbar = () => {
   const navigate = useNavigate();
@@ -40,6 +41,10 @@ const PatientNavbar = () => {
             <span>{label}</span>
           </NavLink>
         ))}
+
+        <div className="theme-toggle-wrapper mt-3 mb-3">
+          <ThemeToggle />
+        </div>
         <button className="logout-btn" onClick={handleLogout}>
           <LogOut className="sidebar-icon" />
           <span>Logout</span>

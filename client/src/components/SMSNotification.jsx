@@ -18,9 +18,9 @@ const SMSNotification = ({ otp, onClose }) => {
   }, [onClose]);
 
   return (
-    <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-white shadow-xl border-l-4 border-blue-500 px-5 py-4 rounded-lg z-50 animate-slideIn w-[300px]">
-      <div className="text-sm font-semibold">📩 New Message</div>
-      <div className="text-sm text-gray-700 mt-1">Your OTP is <strong>{otp}</strong></div>
+    <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-white shadow-xl border-l-4 border-blue-500 px-5 py-4 rounded-lg z-50 animate-slideIn w-[300px] theme-card">
+      <div className="text-sm font-semibold text-adaptive">📩 New Message</div>
+      <div className="text-sm text-gray-700 mt-1 text-adaptive">Your OTP is <strong>{otp}</strong></div>
     </div>
   );
 };
