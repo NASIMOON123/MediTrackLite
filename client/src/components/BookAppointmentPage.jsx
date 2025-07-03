@@ -89,7 +89,7 @@ const BookAppointmentPage = () => {
               <div className="doctor-info ">
                 <h2 >Dr. {doctor.name} <span className="verified">✔</span></h2>
                 <p className="text-adaptive">{doctor.degree} • {doctor.specialization}</p>
-                <p className="text-adaptive"><strong>About:</strong> {doctor.bio}</p>
+                <p className="text-adaptive"><strong className='text-adaptive'>About:</strong> {doctor.bio}</p>
                 <p className="fee text-adaptive">Fee: ₹400-₹700</p>
               </div>
             </div>
@@ -98,7 +98,7 @@ const BookAppointmentPage = () => {
 
         <div className="right-panel theme-card">
           <div className="booking-section theme-card">
-            <h3>Select Date</h3>
+            <h3 className='text-adaptive'>Select Date</h3>
             <input
               type="date"
               min={today}
@@ -107,7 +107,7 @@ const BookAppointmentPage = () => {
               required
             />
 
-            <h3>Select Time Slot</h3>
+            <h3 className='text-adaptive'>Select Time Slot</h3>
             <div className="slots-container">
              
               {timeSlots.map(slot => {
@@ -139,7 +139,7 @@ const BookAppointmentPage = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="appointment-form">
-              <h3>Appointment Details</h3>
+              <h3 className='text-adaptive'>Appointment Details</h3>
 
               <label className="text-adaptive">Symptoms / Reason</label>
               <textarea

@@ -143,10 +143,10 @@ const DoctorProfile = ({ user }) => {
 
   return (
     <div className="profile-container theme-card">
-      <h2>Doctor Profile</h2>
-      <p className="profile-info"><strong>Name:</strong> {user.name}</p>
-      <p className="profile-info"><strong>Email:</strong> {user.email}</p>
-      <p className="profile-info"><strong>Role:</strong> Doctor</p>
+      <h2 className='text-adaptive'>Doctor Profile</h2>
+      <p className="profile-info"><strong className='text-adaptive'>Name:</strong> {user.name}</p>
+      <p className="profile-info"><strong className='text-adaptive'>Email:</strong> {user.email}</p>
+      <p className="profile-info"><strong className='text-adaptive'>Role:</strong> Doctor</p>
 
       {profileData && !showForm ? (
         <div className="profile-info">
@@ -160,13 +160,13 @@ const DoctorProfile = ({ user }) => {
             </div>
           )}
          
-          <p ><strong>Specialization:</strong> {profileData.specialization}</p>
-          <p><strong>Experience:</strong> {profileData.experience} years</p>
-          <p><strong>Phone:</strong> {profileData.phone}</p>
-          <p><strong>Bio:</strong> {profileData.bio}</p>
-          <p><strong>Timings:</strong> {profileData.timings}</p>
-          <p><strong>Available to Work:</strong> {profileData.isAvailable ? 'Yes' : 'No'}</p>
-          <p><strong>On Leave:</strong> {profileData.onLeave ? 'Yes' : 'No'}</p>
+          <p ><strong className='text-adaptive'>Specialization:</strong> {profileData.specialization}</p>
+          <p><strong className='text-adaptive'>Experience:</strong> {profileData.experience} years</p>
+          <p><strong className='text-adaptive'>Phone:</strong> {profileData.phone}</p>
+          <p><strong className='text-adaptive'>Bio:</strong> {profileData.bio}</p>
+          <p><strong className='text-adaptive'>Timings:</strong> {profileData.timings}</p>
+          <p><strong className='text-adaptive'>Available to Work:</strong> {profileData.isAvailable ? 'Yes' : 'No'}</p>
+          <p><strong className='text-adaptive'>On Leave:</strong> {profileData.onLeave ? 'Yes' : 'No'}</p>
         
          <button className="edit-profile-button" onClick={() => setShowForm(true)}>Edit Profile</button>
 

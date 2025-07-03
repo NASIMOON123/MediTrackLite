@@ -17,7 +17,7 @@ const DoctorCard = ({ doctor }) => {
         <h3  className="text-adaptive">Dr. {doctor.name}</h3>
         <p className="specialization text-adaptive"><FaStethoscope /> {doctor.specialization}</p>
         <p  className="text-adaptive">{doctor.title}</p>
-        <p className="text-adaptive"><strong>Experience:</strong> {doctor.experience} years</p>
+        <p className="text-adaptive"><strong className='text-adaptive'>Experience:</strong> {doctor.experience} years</p>
         <Link to={`/appointment/${doctor._id}`} className="view-button">Book Appointment</Link>
       </div>
     </div>

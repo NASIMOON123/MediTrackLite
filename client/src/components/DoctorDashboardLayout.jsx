@@ -15,7 +15,7 @@ const DoctorDashboardLayout = () => {
         {isDashboardRoot ? (
           <div className="welcome-box theme-card" >
             <h2>Welcome to your Doctor Dashboard</h2>
-            <p classNmae="theme-adaptive">
+            <p classNmae="theme-adaptive text-adaptive">
               You can now manage your profile, appointments, availability, and review patient history.
             </p>
           </div>

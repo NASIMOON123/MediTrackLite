@@ -128,16 +128,16 @@ doc.save('Appointment_Receipt.pdf');
 
   return (
     <div className="fake-payment-page">
-      <h2>Confirm Your Appointment</h2>
+      <h2 className='text-adaptive'>Confirm Your Appointment</h2>
       <div className="summary">
-        <p><strong>Doctor:</strong> Dr. {name} ({specialization})</p>
-        <p><strong>Patient:</strong> {patientName}</p>
-        <p><strong>Email:</strong> {email}</p>
-        <p><strong>Date & Time:</strong> {date} at {time}</p>
-        <p><strong>Consultation Fee:</strong> ₹500</p>
+        <p><strong className='text-adaptive'>Doctor:</strong> Dr. {name} ({specialization})</p>
+        <p><strong className='text-adaptive'>Patient:</strong> {patientName}</p>
+        <p><strong className='text-adaptive'>Email:</strong> {email}</p>
+        <p><strong className='text-adaptive'>Date & Time:</strong> {date} at {time}</p>
+        <p><strong className='text-adaptive'>Consultation Fee:</strong> ₹500</p>
       </div>
 
-      <h3>Select Payment Method</h3>
+      <h3 className='text-adaptive'>Select Payment Method</h3>
       <select onChange={(e) => setPaymentMethod(e.target.value)} required>
         <option value="">-- Select Method --</option>
         <option value="upi">UPI</option>

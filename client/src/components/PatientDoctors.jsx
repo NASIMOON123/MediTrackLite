@@ -30,7 +30,7 @@ const PatientDoctors = () => {
 
   return (
     <div className="doctor-list-container theme-card">
-      <h2 className="theme-adaptive">Available Doctors</h2>
+      <h2 className="theme-adaptive text-adaptive">Available Doctors</h2>
 
       <div className="filters-container">
         <input

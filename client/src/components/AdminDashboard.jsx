@@ -148,11 +148,11 @@ const AdminDashboard = () => {
     <table>
       <thead className="text-adaptive">
         <tr>
-          <th>Name</th>
-          <th>Specialization</th>
-          <th>Email</th>
-          <th>Status</th>
-          <th>Action</th>
+          <th className="text-adaptive">Name</th>
+          <th className="text-adaptive">Specialization</th>
+          <th className="text-adaptive">Email</th>
+          <th className="text-adaptive">Status</th>
+          <th className="text-adaptive">Action</th>
         </tr>
       </thead>
       <tbody>

@@ -150,12 +150,11 @@ const DoctorAppointments = () => {
         ) : (
           appointments.map((app) => (
             <div key={app._id} className="card theme-card">
-              <p className="text-adaptive"><strong>Patient:</strong> {app.patientName}</p>
-              <p className="text-adaptive"><strong>Symptoms:</strong> {app.symptoms}</p>
-              <p className="text-adaptive"><strong>Date:</strong> {app.date}</p>
-              <p className="text-adaptive"><strong>Date:</strong> {app.date}</p>
-              <p className="text-adaptive"><strong>Time:</strong> {app.time}</p>
-              <p className="text-adaptive"><strong>Status:</strong> <span className={`status ${app.status.toLowerCase().replace(' ', '-')}`}>{app.status}</span></p>
+              <p ><strong className="text-adaptive">Patient:</strong> {app.patientName}</p>
+              <p><strong className="text-adaptive">Symptoms:</strong> {app.symptoms}</p>
+              <p><strong className="text-adaptive">Date:</strong> {app.date}</p>
+              <p><strong className="text-adaptive">Time:</strong> {app.time}</p>
+              <p><strong className="text-adaptive">Status:</strong> <span className={`status ${app.status.toLowerCase().replace(' ', '-')}`}>{app.status}</span></p>
 
               {statusFilter === 'Approved' && (() => {
                 const appointmentDateTime = new Date(`${app.date} ${app.time}`);

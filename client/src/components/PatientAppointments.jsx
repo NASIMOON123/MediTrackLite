@@ -17,7 +17,7 @@ const PatientAppointments = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [submittedFeedbacks, setSubmittedFeedbacks] = useState({});
-  const [showFullFeedback, setShowFullFeedback] = useState({});
+
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -205,10 +205,10 @@ const PatientAppointments = () => {
                 <div className="card h-100 shadow-sm grey-card" style={{ fontSize: '1rem' }}>
                   <div className="card-body py-2 px-3 grey-card">
                     <div style={{ fontSize: '1rem', lineHeight: '1.6' }}>
-                      <strong>Date:</strong> {appointment.date}<br />
-                      <strong>Time:</strong> {appointment.time}<br />
-                      <strong>Doctor:</strong> {appointment.doctorId.name || appointment.doctorId}<br />
-                      <strong>Symptom:</strong> {appointment.symptoms || 'N/A'}<br />
+                      <strong className='text-adaptive'>Date:</strong> {appointment.date}<br />
+                      <strong className='text-adaptive'>Time:</strong> {appointment.time}<br />
+                      <strong className='text-adaptive'>Doctor:</strong> {appointment.doctorId.name || appointment.doctorId}<br />
+                      <strong className='text-adaptive'>Symptom:</strong> {appointment.symptoms || 'N/A'}<br />
                       <span className={`status-label ${appointment.status.toLowerCase().replace(/\s/g, '-')}`}>
                         {appointment.status}
                       </span><br />
@@ -251,7 +251,7 @@ const PatientAppointments = () => {
                               <p className="text-adaptive"><strong className="text-adaptive">Doctor's Notes:</strong> {appointment.prescription || 'N/A'}</p>
                               {appointment.medicines?.length > 0 && (
                                 <>
-                                  <strong>Medicines:</strong>
+                                  <strong className='text-adaptive'>Medicines:</strong>
                                   {Object.entries(groupMedicinesByTiming(appointment.medicines)).map(([timing, meds]) =>
                                     meds.length > 0 ? (
                                       <div key={timing}>
@@ -259,7 +259,7 @@ const PatientAppointments = () => {
                                         <ul>
                                           {meds.map((med, idx) => (
                                             <li key={idx}>
-                                              <strong>{med.name}</strong> - {med.dosage} ({med.frequency})
+                                              <strong className='text-adaptive'>{med.name}</strong> - {med.dosage} ({med.frequency})
                                             </li>
                                           ))}
                                         </ul>
@@ -272,61 +272,42 @@ const PatientAppointments = () => {
                           )}
 
                           {submittedFeedbacks[appointment._id] && (
-                            <div className="feedback-box mt-3 theme-card">
-                              <strong>Feedback:</strong>
-                              <p className="fst-italic mb-1">
-                          {submittedFeedbacks[appointment._id]?.comment ? (
-                            showFullFeedback[appointment._id] ? (
-                              submittedFeedbacks[appointment._id].comment
-                            ) : (
-                              submittedFeedbacks[appointment._id].comment.slice(0, 100) +
-                              (submittedFeedbacks[appointment._id].comment.length > 100 ? '...' : '')
-                            )
-                          ) : (
-                            <span className="text-muted">No feedback submitted</span>
-                          )}
-                        </p>
-                              {submittedFeedbacks[appointment._id].comment.length > 100 && (
-                                <button
-                                  className="btn btn-link p-0"
-                                  onClick={() =>
-                                    setShowFullFeedback((prev) => ({
-                                      ...prev,
-                                      [appointment._id]: !prev[appointment._id],
-                                    }))
-                                  }
-                                >
-                                  {showFullFeedback[appointment._id] ? 'Show less' : 'Show more'}
-                                </button>
-                              )}
-                              <div className="stars mb-0">
-                                {[...Array(5)].map((_, i) => (
-                                  <span
-                                    key={i}
-                                    className={
-                                      i < submittedFeedbacks[appointment._id].rating
-                                        ? 'star filled'
-                                        : 'star'
-                                    }
-                                  >
-                                    ★
-                                  </span>
-                                ))}
-                              </div>
-                              {!submittedFeedbacks[appointment._id]?.deleteRequested ? (
-                                <button
-                                  className="btn btn-sm btn-outline-danger mt-2"
-                                  onClick={() =>
-                                    requestDelete(submittedFeedbacks[appointment._id]._id)
-                                  }
-                                >
-                                  Request Feedback Deletion
-                                </button>
+                          <div className="feedback-box mt-3 theme-card">
+                            <strong className='text-adaptive'>Feedback:</strong>
+                            <p className="fst-italic mb-1 text-adaptive">
+                              {submittedFeedbacks[appointment._id]?.comment ? (
+                                submittedFeedbacks[appointment._id].comment
                               ) : (
-                                <p className="text-danger small mt-2">Deletion Requested</p>
+                                <span className="text-muted">No feedback submitted</span>
                               )}
+                            </p>
+                            <div className="stars mb-0">
+                              {[...Array(5)].map((_, i) => (
+                                <span
+                                  key={i}
+                                  className={
+                                    i < submittedFeedbacks[appointment._id].rating ? 'star filled' : 'star'
+                                  }
+                                >
+                                  ★
+                                </span>
+                              ))}
                             </div>
-                          )}
+                            {!submittedFeedbacks[appointment._id]?.deleteRequested ? (
+                              <button
+                                className="btn btn-sm btn-outline-danger mt-2"
+                                onClick={() =>
+                                  requestDelete(submittedFeedbacks[appointment._id]._id)
+                                }
+                              >
+                                Request Feedback Deletion
+                              </button>
+                            ) : (
+                              <p className="text-danger small mt-2">Deletion Requested</p>
+                            )}
+                          </div>
+                        )}
+
                         </div>
                       )}
                     </div>
