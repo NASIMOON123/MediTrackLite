@@ -111,29 +111,30 @@ const PatientAppointments = () => {
   };
 
   const requestDelete = async (feedbackId) => {
-    try {
-      const token = localStorage.getItem('token');
-      await axios.put(
-        `${process.env.REACT_APP_API_BASE_URL}/api/feedback/request-delete/${feedbackId}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
+  try {
+    const token = localStorage.getItem('token');
+    await axios.put(
+      `${process.env.REACT_APP_API_BASE_URL}/api/feedback/request-delete/${feedbackId}`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    toast.success('Deletion request sent');
+    setSubmittedFeedbacks((prev) => {
+      const updated = { ...prev };
+      for (const key in updated) {
+        if (updated[key]?._id === feedbackId) {
+          updated[key].deleteRequested = true;
         }
-      );
-      toast.success('Deletion request sent');
-      setSubmittedFeedbacks((prev) => {
-        const updated = { ...prev };
-        for (const key in updated) {
-          if (updated[key]?._id === feedbackId) {
-            updated[key].deleteRequested = true;
-          }
-        }
-        return updated;
-      });
-    } catch (err) {
-      toast.error('Failed to request deletion');
-    }
-  };
+      }
+      return updated;
+    });
+  } catch (err) {
+    toast.error('Failed to request deletion');
+  }
+};
+
 
   const handlePrint = (appointment) => {
     let medicineHTML = '';
@@ -274,13 +275,12 @@ const PatientAppointments = () => {
                           {submittedFeedbacks[appointment._id] && (
                           <div className="feedback-box mt-3 theme-card">
                             <strong className='text-adaptive'>Feedback:</strong>
-                            <p className="fst-italic mb-1 text-adaptive">
-                              {submittedFeedbacks[appointment._id]?.comment ? (
-                                submittedFeedbacks[appointment._id].comment
-                              ) : (
-                                <span className="text-muted">No feedback submitted</span>
-                              )}
+                            <p className="fst-italic mb-1">
+                              {submittedFeedbacks[appointment._id].comment
+                                ? submittedFeedbacks[appointment._id].comment
+                                : <span className="text-muted">No feedback submitted</span>}
                             </p>
+
                             <div className="stars mb-0">
                               {[...Array(5)].map((_, i) => (
                                 <span
@@ -293,7 +293,8 @@ const PatientAppointments = () => {
                                 </span>
                               ))}
                             </div>
-                            {!submittedFeedbacks[appointment._id]?.deleteRequested ? (
+
+                            {!submittedFeedbacks[appointment._id].deleteRequested ? (
                               <button
                                 className="btn btn-sm btn-outline-danger mt-2"
                                 onClick={() =>
@@ -307,6 +308,7 @@ const PatientAppointments = () => {
                             )}
                           </div>
                         )}
+
 
                         </div>
                       )}
