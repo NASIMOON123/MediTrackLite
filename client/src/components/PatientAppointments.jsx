@@ -275,7 +275,7 @@ const PatientAppointments = () => {
                           {submittedFeedbacks[appointment._id] && (
                           <div className="feedback-box mt-3 theme-card">
                             <strong className='text-adaptive'>Feedback:</strong>
-                            <p className="fst-italic mb-1">
+                            <p className="fst-italic mb-1 text-adaptive">
                               {submittedFeedbacks[appointment._id].comment
                                 ? submittedFeedbacks[appointment._id].comment
                                 : <span className="text-muted">No feedback submitted</span>}
