@@ -173,7 +173,7 @@ MediTrackLite/
 
 ```bash
 # Clone the repo
-git clone https://github.com/N-Manisha-05/MediTrackLite.git
+git clone https://github.com/NASIMOON123/MediTrackLite.git
 cd MediTrackLite
 
 # Install backend
